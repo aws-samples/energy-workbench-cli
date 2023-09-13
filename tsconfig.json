@@ -11,5 +11,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*"],
-  "exclude": ["src/templates/**/*", "*.js"]
+  "exclude": ["src/templates/**/*"]
 }

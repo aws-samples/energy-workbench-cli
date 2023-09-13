@@ -49,12 +49,15 @@ oclif generate command mycommand
 
 This scaffolds a new command class in `src/commands/mycommand.ts`.
 
+You can modify this command class by adding flags, keywords, descriptions, subcommands.
+
 ## 2. Implement Logic
 
 - Add JSDoc comment description
 - Define command arguments/flags
-- Write the command logic in `run()`
-- Write helper functions in an enclosed `./operations` directory
+- Write the command logic in `run()` for each command
+- Wherever possible use helper modules and functions
+- Write helper modules in the `./src/utils` directory and import
 
 ## 3. Build and Test
 

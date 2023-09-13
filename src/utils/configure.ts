@@ -35,4 +35,5 @@ export async function configure() {
 
   // Inform user
   console.log(`Credentials saved to ${credentialsPath}`);
+  return credentials;
 }

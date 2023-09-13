@@ -1,5 +1,5 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { configure } from "./operations/configure";
+import { configure } from "../../utils/configure";
 import * as os from "os";
 
 export default class SetupApi extends Command {

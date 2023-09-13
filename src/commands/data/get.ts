@@ -1,6 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { table, TableUserConfig } from "table";
-import { sampleTable } from "./operations/sample-table";
+import { sampleTable } from "../../utils/sample-table";
 
 export default class DataGet extends Command {
   static description = "Gets data via API using local SDK.";

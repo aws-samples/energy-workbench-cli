@@ -3,8 +3,7 @@
 This command line interface automates development and operational tasks for OSDU open source software. The workbench combines pre-built software modules, data operations via SDK, and common operational commands into a single command line interface. OSDU Workbench (owb) reduces common operations that take days or weeks to hours or minutes.
 
 <!-- toc -->
-
-- [osdu-workbench-cli](#osdu-workbench-cli)
+* [osdu-workbench-cli](#osdu-workbench-cli)
 <!-- tocstop -->
 
 ## Usage
@@ -16,7 +15,6 @@ This command line interface automates development and operational tasks for OSDU
 ```
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g osdu-workbench
 $ owb COMMAND
@@ -28,32 +26,30 @@ USAGE
   $ owb COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-
-- [`owb data delete [FILE]`](#owb-data-delete-file)
-- [`owb data get [DATA] [COMMENT]`](#owb-data-get-data-comment)
-- [`owb data post [FILE]`](#owb-data-post-file)
-- [`owb data update [FILE]`](#owb-data-update-file)
-- [`owb deploy application [FILE]`](#owb-deploy-application-file)
-- [`owb help [COMMANDS]`](#owb-help-commands)
-- [`owb plugins`](#owb-plugins)
-- [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin)
-- [`owb plugins:inspect PLUGIN...`](#owb-pluginsinspect-plugin)
-- [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin-1)
-- [`owb plugins:link PLUGIN`](#owb-pluginslink-plugin)
-- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin)
-- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
-- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
-- [`owb plugins update`](#owb-plugins-update)
-- [`owb setup api [FILE]`](#owb-setup-api-file)
-- [`owb setup creds [ENCRYPT]`](#owb-setup-creds-encrypt)
-- [`owb setup templates [FILE]`](#owb-setup-templates-file)
-- [`owb start`](#owb-start)
+* [`owb data delete [FILE]`](#owb-data-delete-file)
+* [`owb data get [DATA] [COMMENT]`](#owb-data-get-data-comment)
+* [`owb data post [FILE]`](#owb-data-post-file)
+* [`owb data update [FILE]`](#owb-data-update-file)
+* [`owb deploy application [FILE]`](#owb-deploy-application-file)
+* [`owb help [COMMANDS]`](#owb-help-commands)
+* [`owb plugins`](#owb-plugins)
+* [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin)
+* [`owb plugins:inspect PLUGIN...`](#owb-pluginsinspect-plugin)
+* [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin-1)
+* [`owb plugins:link PLUGIN`](#owb-pluginslink-plugin)
+* [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin)
+* [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
+* [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
+* [`owb plugins update`](#owb-plugins-update)
+* [`owb setup api [FILE]`](#owb-setup-api-file)
+* [`owb setup creds [ENCRYPT]`](#owb-setup-creds-encrypt)
+* [`owb setup templates [FILE]`](#owb-setup-templates-file)
+* [`owb start`](#owb-start)
 
 ## `owb data delete [FILE]`
 
@@ -238,7 +234,7 @@ ALIASES
   $ owb plugins add
 
 EXAMPLES
-  $ owb plugins:install myplugin
+  $ owb plugins:install myplugin 
 
   $ owb plugins:install https://github.com/someuser/someplugin
 
@@ -301,7 +297,7 @@ ALIASES
   $ owb plugins add
 
 EXAMPLES
-  $ owb plugins:install myplugin
+  $ owb plugins:install myplugin 
 
   $ owb plugins:install https://github.com/someuser/someplugin
 
@@ -503,5 +499,4 @@ EXAMPLES
 ```
 
 _See code: [dist/commands/start.ts](https://github.com/samwardbiddle/osdu-workbench/blob/v0.0.0/dist/commands/start.ts)_
-
 <!-- commandsstop -->
