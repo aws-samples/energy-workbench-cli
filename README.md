@@ -3,12 +3,20 @@
 This command line interface automates development and operational tasks for OSDU open source software. The workbench combines pre-built software modules, data operations via SDK, and common operational commands into a single command line interface. OSDU Workbench (owb) reduces common operations that take days or weeks to hours or minutes.
 
 <!-- toc -->
-* [osdu-workbench-cli](#osdu-workbench-cli)
+
+- [osdu-workbench-cli](#osdu-workbench-cli)
 <!-- tocstop -->
 
 ## Usage
 
+### For development
+
+```sh-session
+./bin/dev <your-command>
+```
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g osdu-workbench
 $ owb COMMAND
@@ -20,21 +28,144 @@ USAGE
   $ owb COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-* [`owb help [COMMANDS]`](#owb-help-commands)
-* [`owb plugins`](#owb-plugins)
-* [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin)
-* [`owb plugins:inspect PLUGIN...`](#owb-pluginsinspect-plugin)
-* [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin-1)
-* [`owb plugins:link PLUGIN`](#owb-pluginslink-plugin)
-* [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin)
-* [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
-* [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
-* [`owb plugins update`](#owb-plugins-update)
+
+- [`owb data delete [FILE]`](#owb-data-delete-file)
+- [`owb data get [DATA] [COMMENT]`](#owb-data-get-data-comment)
+- [`owb data post [FILE]`](#owb-data-post-file)
+- [`owb data update [FILE]`](#owb-data-update-file)
+- [`owb deploy application [FILE]`](#owb-deploy-application-file)
+- [`owb help [COMMANDS]`](#owb-help-commands)
+- [`owb plugins`](#owb-plugins)
+- [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin)
+- [`owb plugins:inspect PLUGIN...`](#owb-pluginsinspect-plugin)
+- [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin-1)
+- [`owb plugins:link PLUGIN`](#owb-pluginslink-plugin)
+- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin)
+- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
+- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
+- [`owb plugins update`](#owb-plugins-update)
+- [`owb setup api [FILE]`](#owb-setup-api-file)
+- [`owb setup creds [ENCRYPT]`](#owb-setup-creds-encrypt)
+- [`owb setup templates [FILE]`](#owb-setup-templates-file)
+- [`owb start`](#owb-start)
+
+## `owb data delete [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb data delete [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb data delete
+```
+
+## `owb data get [DATA] [COMMENT]`
+
+Gets data via API using local SDK.
+
+```
+USAGE
+  $ owb data get [DATA] [COMMENT] -s <value> [-f <value>] [-d <value>]
+
+ARGUMENTS
+  DATA     Data type
+  COMMENT  Comment
+
+FLAGS
+  -d, --display=<value>  [default: csv] Format to display data
+  -f, --format=<value>   [default: csv] Format of data to get.
+  -s, --source=<value>   (required) [default: test] Source of data
+
+DESCRIPTION
+  Gets data via API using local SDK.
+
+EXAMPLES
+  $ owb data get 'geo' --source 'example' --format 'csv' --display 'shell'
+```
+
+## `owb data post [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb data post [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb data post
+```
+
+## `owb data update [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb data update [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb data update
+```
+
+## `owb deploy application [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb deploy application [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb deploy application
+```
 
 ## `owb help [COMMANDS]`
 
@@ -54,7 +185,7 @@ DESCRIPTION
   Display help for owb.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.12/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.19/src/commands/help.ts)_
 
 ## `owb plugins`
 
@@ -107,7 +238,7 @@ ALIASES
   $ owb plugins add
 
 EXAMPLES
-  $ owb plugins:install myplugin 
+  $ owb plugins:install myplugin
 
   $ owb plugins:install https://github.com/someuser/someplugin
 
@@ -170,7 +301,7 @@ ALIASES
   $ owb plugins add
 
 EXAMPLES
-  $ owb plugins:install myplugin 
+  $ owb plugins:install myplugin
 
   $ owb plugins:install https://github.com/someuser/someplugin
 
@@ -288,4 +419,89 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+## `owb setup api [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb setup api [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb setup api 'configure'
+```
+
+## `owb setup creds [ENCRYPT]`
+
+Configures credentials and saves them to local file.
+
+```
+USAGE
+  $ owb setup creds [ENCRYPT] [-p <value>] [-k <value>] [-s <value>]
+
+ARGUMENTS
+  ENCRYPT  Encrypt secret
+
+FLAGS
+  -k, --format=<value>   API Key
+  -p, --source=<value>   [default: default] OSDU User Profile to Use
+  -s, --display=<value>  API Secret
+
+DESCRIPTION
+  Configures credentials and saves them to local file.
+
+EXAMPLES
+  $ owb setup creds --profile 'example' --ApiKey 'yourKey' --ApiSecret 'abc123'
+```
+
+## `owb setup templates [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb setup templates [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb setup templates
+```
+
+## `owb start`
+
+Basic start command implements a command prompt input workflow.
+
+```
+USAGE
+  $ owb start
+
+DESCRIPTION
+  Basic start command implements a command prompt input workflow.
+
+EXAMPLES
+  $ owb start
+```
+
+_See code: [dist/commands/start.ts](https://github.com/samwardbiddle/osdu-workbench/blob/v0.0.0/dist/commands/start.ts)_
+
 <!-- commandsstop -->

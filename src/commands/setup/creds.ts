@@ -1,5 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { configure } from "./operations/configure";
+import * as os from "os";
 
 export default class SetupApi extends Command {
   static description = "Configures credentials and saves them to local file.";
