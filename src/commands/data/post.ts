@@ -1,6 +1,6 @@
 import {Args, Command, Flags} from '@oclif/core'
 
-export default class Create extends Command {
+export default class DataPost extends Command {
   static description = 'describe the command here'
 
   static examples = [
@@ -19,10 +19,10 @@ export default class Create extends Command {
   }
 
   public async run(): Promise<void> {
-    const {args, flags} = await this.parse(Create)
+    const {args, flags} = await this.parse(DataPost)
 
     const name = flags.name ?? 'world'
-    this.log(`hello ${name} from /Users/sambiddl/Documents/code/osdu-workbench/workbench/osdu-workbench/src/commands/create.ts`)
+    this.log(`hello ${name} from /Users/sambiddl/Documents/code/osdu-workbench/osdu-workbench-cli/src/commands/data/post.ts`)
     if (args.file && flags.force) {
       this.log(`you input --force and --file: ${args.file}`)
     }

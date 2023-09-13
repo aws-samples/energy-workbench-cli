@@ -1,17 +1,13 @@
-oclif-hello-world
-=================
+# osdu-workbench-cli
 
-oclif example Hello World CLI
-
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![CircleCI](https://circleci.com/gh/oclif/hello-world/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/hello-world/tree/main)
-[![GitHub license](https://img.shields.io/github/license/oclif/hello-world)](https://github.com/oclif/hello-world/blob/main/LICENSE)
+This command line interface automates development and operational tasks for OSDU open source software. The workbench combines pre-built software modules, data operations via SDK, and common operational commands into a single command line interface. OSDU Workbench (owb) reduces common operations that take days or weeks to hours or minutes.
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+* [osdu-workbench-cli](#osdu-workbench-cli)
 <!-- tocstop -->
-# Usage
+
+## Usage
+
 <!-- usage -->
 ```sh-session
 $ npm install -g osdu-workbench
@@ -25,10 +21,10 @@ USAGE
 ...
 ```
 <!-- usagestop -->
-# Commands
+
+## Commands
+
 <!-- commands -->
-* [`owb hello PERSON`](#owb-hello-person)
-* [`owb hello world`](#owb-hello-world)
 * [`owb help [COMMANDS]`](#owb-help-commands)
 * [`owb plugins`](#owb-plugins)
 * [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin)
@@ -39,46 +35,6 @@ USAGE
 * [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
 * [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
 * [`owb plugins update`](#owb-plugins-update)
-
-## `owb hello PERSON`
-
-Say hello
-
-```
-USAGE
-  $ owb hello PERSON -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [dist/commands/hello/index.ts](https://github.com/samwardbiddle/osdu-workbench/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `owb hello world`
-
-Say hello world
-
-```
-USAGE
-  $ owb hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ owb hello world
-  hello world! (./src/commands/hello/world.ts)
-```
 
 ## `owb help [COMMANDS]`
 
