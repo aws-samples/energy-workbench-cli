@@ -3,6 +3,7 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 import figlet from "figlet";
 import { createSpinner } from "nanospinner";
+import { configure } from "../utils/setup/configure";
 
 const orange = chalk.hex("#FFA500");
 
@@ -34,24 +35,38 @@ export default class Start extends Command {
   public async run(): Promise<void> {
     welcome();
     const choices = [
+      "🔐  configure credentials",
       "📩  query an api",
       "🚀  deploy a component",
       "🏗️  build a new component",
       "👋  get help",
     ];
-    const prompt: any = await inquirer
-      .prompt([
-        {
-          type: "list",
-          message: "what would you like to build?",
-          name: "start",
-          choices: choices,
-        },
-      ])
-      .then((answer: any) => {
-        console.log(answer.build);
-      });
+    const prompt: any = await inquirer.prompt([
+      {
+        type: "list",
+        message: "what would you like to build?",
+        name: "start",
+        choices: choices,
+      },
+    ]);
 
-    prompt.start;
+    const answer = prompt.start;
+
+    if (answer === "🔐  configure credentials") {
+      console.log("Configuring credentials 🪄");
+      configure();
+    }
+    if (answer === "📩  query an api") {
+      console.log("This feature is coming soon!");
+    }
+    if (answer === "🚀  deploy a component") {
+      console.log("This feature is coming soon!");
+    }
+    if (answer === "🏗️  build a new component") {
+      console.log("This feature is coming soon!");
+    }
+    if (answer === "👋  get help") {
+      console.log("This feature is coming soon!");
+    }
   }
 }

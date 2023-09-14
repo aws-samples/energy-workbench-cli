@@ -31,6 +31,7 @@
     "cli-table": "^0.3.11",
     "execa": "^8.0.1",
     "figlet": "^1.6.0",
+    "fs-extra": "^11.1.1",
     "graceful-fs": "^4.2.11",
     "gradient": "^0.2.0",
     "inquirer": "6.3.1",
@@ -42,9 +43,12 @@
   },
   "devDependencies": {
     "@oclif/test": "^2.3.28",
+    "@types/boxen": "^3.0.1",
     "@types/chai": "^4",
     "@types/cli-table": "^0.3.1",
+    "@types/fs-extra": "^11.0.2",
     "@types/graceful-fs": "^4.1.6",
+    "@types/listr": "^0.14.5",
     "@types/mocha": "^9.0.0",
     "@types/ncp": "^2.0.5",
     "@types/node": "^16.18.38",
@@ -91,5 +95,8 @@
   "keywords": [
     "oclif"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "compilerOptions": {
+    "module": "esnext"
+  }
 }

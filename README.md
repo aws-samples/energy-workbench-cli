@@ -31,6 +31,8 @@ USAGE
 ## Commands
 
 <!-- commands -->
+* [`owb create module [TEMPLATE]`](#owb-create-module-template)
+* [`owb create project [TEMPLATE]`](#owb-create-project-template)
 * [`owb data delete [FILE]`](#owb-data-delete-file)
 * [`owb data get [DATA] [COMMENT]`](#owb-data-get-data-comment)
 * [`owb data post [FILE]`](#owb-data-post-file)
@@ -46,10 +48,51 @@ USAGE
 * [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
 * [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
 * [`owb plugins update`](#owb-plugins-update)
+* [`owb search [FILE]`](#owb-search-file)
 * [`owb setup api [FILE]`](#owb-setup-api-file)
 * [`owb setup creds [ENCRYPT]`](#owb-setup-creds-encrypt)
 * [`owb setup templates [FILE]`](#owb-setup-templates-file)
 * [`owb start`](#owb-start)
+
+## `owb create module [TEMPLATE]`
+
+Add a new module to an existing project
+
+```
+USAGE
+  $ owb create module [TEMPLATE]
+
+ARGUMENTS
+  TEMPLATE  Template
+
+DESCRIPTION
+  Add a new module to an existing project
+
+EXAMPLES
+  $ owb create module 'app' --template 'example' --git 'true' --cicd 'true'
+```
+
+## `owb create project [TEMPLATE]`
+
+Start new application or project from a template
+
+```
+USAGE
+  $ owb create project [TEMPLATE] [-g <value>] [-c <value>]
+
+ARGUMENTS
+  TEMPLATE  Template
+
+FLAGS
+  -c, --cicd=<value>  [default: github] Option to include cicd pipeline.
+  -g, --git=<value>   [default: true] Option for creating git repository
+
+DESCRIPTION
+  Start new application or project from a template
+
+EXAMPLES
+  $ owb create project 'app' --template 'example' --git 'true' --cicd 'true'
+```
 
 ## `owb data delete [FILE]`
 
@@ -415,6 +458,30 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+## `owb search [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ owb search [FILE] [-n <value>] [-f]
+
+ARGUMENTS
+  FILE  file to read
+
+FLAGS
+  -f, --force
+  -n, --name=<value>  name to print
+
+DESCRIPTION
+  describe the command here
+
+EXAMPLES
+  $ owb search
+```
+
+_See code: [dist/commands/search.ts](https://github.com/samwardbiddle/osdu-workbench/blob/v0.0.0/dist/commands/search.ts)_
 
 ## `owb setup api [FILE]`
 
