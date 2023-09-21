@@ -18,8 +18,9 @@ if (!fs.existsSync(credentialsDir)) {
 
 interface Credentials {
   profile: string;
-  apiKey: string;
-  apiSecret: string;
+  clientId: string;
+  cognitoUsername: string;
+  cognitoPassword: string;
 }
 
 export async function configure(): Promise<string> {
@@ -31,17 +32,21 @@ export async function configure(): Promise<string> {
       default: "default",
     },
     {
-      name: "apiKey",
-      message: "API key:",
+      name: "clientId",
+      message: "Cognito Client ID:",
     },
     {
-      name: "apiSecret",
-      message: "API secret:",
+      name: "cognitoUsername",
+      message: "Cognito Username:",
+    },
+    {
+      name: "cognitoPassword",
+      message: "Cognito Password:",
     },
   ]);
 
   // Save credentials to file
-  const credentials = `${answers.profile}\n${answers.apiKey}\n${answers.apiSecret}\n`;
+  const credentials = `[${answers.profile}]\nosdu_client_id = ${answers.clientId}\nosdu_cognito_username = ${answers.cognitoUsername}\nosdu_cognito_password = ${answers.cognitoPassword}\n`;
 
   // Inform user
   console.log(`\n###########################################\n`);
