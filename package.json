@@ -29,6 +29,7 @@
     "chalk": "^4.1.2",
     "chalk-animation": "^2.0.3",
     "cli-table": "^0.3.11",
+    "dotenv": "^16.3.1",
     "execa": "^8.0.1",
     "figlet": "^1.6.0",
     "fs-extra": "^11.1.1",
@@ -37,6 +38,7 @@
     "inquirer": "6.3.1",
     "nanospinner": "^1.1.0",
     "ncp": "^2.0.0",
+    "osdu-workbench": "git+ssh://git@ssh.gitlab.aws.dev:osdu-workbench/osdu-workbench-sdk.git",
     "pkg-install": "^1.0.0",
     "replacestream": "^4.0.3",
     "rxjs": "^7.8.1"
