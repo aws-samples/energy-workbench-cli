@@ -62,6 +62,9 @@ You can modify this command class by adding flags, keywords, descriptions, subco
 Here is an example of a new module:
 
 ```typescript
+import { Args, Command, Flags } from "@oclif/core";
+import { Search } from "osdu-workbench-sdk";
+import { displaySearchResults } from "../../utils/search/searchQueryTable";
 /**
  * Search command to query data using a kind value.
  *
