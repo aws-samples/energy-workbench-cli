@@ -1,5 +1,5 @@
 {
-  "name": "osdu-workbench",
+  "name": "osdu-workbench-cli",
   "version": "0.0.0",
   "description": "Workbench CLI + SDK + module library to serve as companion toolkit for OSDU on AWS.",
   "author": "AWS for Energy",
@@ -38,7 +38,6 @@
     "inquirer": "6.3.1",
     "nanospinner": "^1.1.0",
     "ncp": "^2.0.0",
-    "osdu-workbench": "git+ssh://git@ssh.gitlab.aws.dev:osdu-workbench/osdu-workbench-sdk.git",
     "pkg-install": "^1.0.0",
     "replacestream": "^4.0.3",
     "rxjs": "^7.8.1"

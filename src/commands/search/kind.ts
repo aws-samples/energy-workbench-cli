@@ -1,5 +1,5 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { Search } from "osdu-workbench";
+import { Search } from "osdu-workbench-sdk";
 import { displaySearchResults } from "../../utils/search/searchQueryTable";
 
 export default class SearchKind extends Command {
