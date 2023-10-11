@@ -42,9 +42,12 @@ So oclif provides structure via commands, takes care of input parsing, allows ex
 To add a new command:
 
 ## 1. Generate Command
+Go to osdu-workbench-cli
+make sure oclif is installed.<br>
+You can check if oclif is installed with `oclif --version`.
 
 ```
-oclif generate command mycommand
+oclif generate command mynewcommand
 ```
 
 This scaffolds a new command class in `src/commands/mycommand.ts`.
@@ -75,58 +78,59 @@ import { displaySearchResults } from "../../utils/search/searchQueryTable";
  * The results are displayed in a table using the cli-table module.
  */
 export default class SearchKind extends Command {
-  /**
-   * Description shown in command list
-   */
-  static description = "Perform a search using a kind parameter";
-
-  /**
-   * Example commands
-   */
-  static examples = [
-    `<%= config.bin %> <%= command.id %> osdu:wks:kind-string`,
-  ];
-
-  /**
-   * Argument for search query
-   */
-  static args = {
-    query: Args.string({
-      description: "The kind query value to search for records",
-    }),
-  };
-
-  /**
-   * Handle command execution
-   */
-  async run() {
     /**
-     * Parse CLI arguments
+     * Description shown in command list
      */
-    const { args } = this.parse(SearchKind);
+    static description = "Perform a search using a kind parameter";
 
     /**
-     * OSDU search client
+     * Example commands
      */
-    this.log(`Searching with parameter: kind and query: ${args.query}. `);
+    static examples = [
+        `<%= config.bin %> <%= command.id %> osdu:wks:kind-string`,
+    ];
 
-    // instantiate an instance of the search client
-    const search = new Search.SearchClient(
-      "https://osdu.osdupsdemo.install.osdu.aws",
-      "us-east-1"
-    );
+    /**
+     * Argument for search query
+     */
+    static args = {
+        query: Args.string({
+            description: "The kind query value to search for records",
+        }),
+    };
 
-    const q = args.query;
+    /**
+     * Handle command execution
+     */
+    async run() {
+        /**
+         * Parse CLI arguments
+         */
+        const {args} = this.parse(SearchKind);
 
-    if (!q) {
-      this.error("No query supplied!");
+        /**
+         * OSDU search client
+         */
+        this.log(`Searching with parameter: kind and query: ${args.query}. `);
+
+        // instantiate an instance of the search client
+        const search = new Search.GroupClient(
+            "https://osdu.osdupsdemo.install.osdu.aws",
+            "us-east-1"
+        );
+
+        const q = args.query;
+
+        if (!q) {
+            this.error("No query supplied!");
+        }
+
+        const response = await search.query({
+            kind: q,
+        });
+
+        displaySearchResults(response);
     }
-
-    const response = await search.query({
-      kind: q,
-    });
-
-    displaySearchResults(response);
 }
 ```
 
@@ -137,10 +141,11 @@ Here are some steps to generate and customize an oclif command with utils functi
 1. Generate a new command
 
    ```bash
-   oclif command mycommand
+   cd osdu-workbench-cli
+   oclif generate command mynewcommand
    ```
 
-   This will create the scaffolding in `./src/commands/mycommand.ts`
+   This will create the scaffolding in `./src/commands/mynewcommand.ts`
 
 2. Modify the command description and examples in the class:
 
