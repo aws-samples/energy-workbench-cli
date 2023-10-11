@@ -4,7 +4,7 @@
   "description": "Workbench CLI + SDK + module library to serve as companion toolkit for OSDU on AWS.",
   "author": "AWS for Energy",
   "bin": {
-    "owb": "./bin/run"
+    "ewb": "./bin/run"
   },
   "homepage": "https://github.com/samwardbiddle/osdu-workbench",
   "license": "MIT",
