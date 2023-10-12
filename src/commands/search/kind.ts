@@ -3,7 +3,7 @@ import { Search } from "osdu-workbench-sdk";
 import { displaySearchResults } from "../../utils/search/searchQueryTable";
 
 export default class SearchKind extends Command {
-  static description = "Perform a search call using the kind key and flag for query";
+  static description = "Perform a search call using the kind key and flags for query and limit";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> osdu:wks:master-data--Well:1.0.0",
