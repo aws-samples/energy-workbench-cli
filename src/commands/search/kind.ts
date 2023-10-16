@@ -10,25 +10,20 @@ export default class SearchKind extends Command {
   ];
 
   static args = {
-    qk: Args.string({ description: "kind to query" }),
+    query: Args.string({ description: "kind to query" }),
   };
 
   static flags = {
     query: Flags.string({ description: "Specific query to run", char: 'q' }),
-    limit: Flags.integer( {description: "How many lines to return"})
+    limit: Flags.integer( {description: "How many lines to return"}),
+    table: Flags.string( {description: "What format to display search results"})
   };
 
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(SearchKind);
-
-    this.log(`Searching with parameter: kind and query: ${args.qk}. `);
-
-    const specificQuery = flags.query;
-    if (specificQuery) {
-      this.log(`Specific query provided: ${specificQuery}`);
-    }
-
-    const specificLimit = flags.limit;
+    const specificQuery = flags.query || "";
+    const specificLimit = flags.limit || 10;
+    const tableFormat = flags.table || "no";
 
     // instantiate an instance of the search client
     const search = new Search.SearchClient(
@@ -36,11 +31,7 @@ export default class SearchKind extends Command {
       "us-east-1"
     );
 
-    const q = args.qk;
-
-    if (!q) {
-      this.error("No query supplied!");
-    }
+    const q = args.query || "";
 
     const response = await search.query({
       kind: q,
@@ -48,6 +39,13 @@ export default class SearchKind extends Command {
       limit: specificLimit
     });
 
-    displaySearchResults(response);
+    console.log(tableFormat)
+
+    if (tableFormat == "yes") {
+      displaySearchResults(response);
+    } else {
+      console.log(JSON.stringify(response, null, 2))
+    }
   }
+
 }
