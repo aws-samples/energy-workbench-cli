@@ -10,7 +10,7 @@ export default class SearchKind extends Command {
   ];
 
   static args = {
-    query: Args.string({ description: "kind to query" }),
+    kind: Args.string({ description: "kind to query" }),
   };
 
   static flags = {
@@ -31,10 +31,10 @@ export default class SearchKind extends Command {
       "us-east-1"
     );
 
-    const q = args.query || "";
+    const k = args.kind || "";
 
     const response = await search.query({
-      kind: q,
+      kind: k,
       query: specificQuery,
       limit: specificLimit
     });
