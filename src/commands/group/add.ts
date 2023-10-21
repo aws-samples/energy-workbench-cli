@@ -1,6 +1,5 @@
 import {Args, Command, Flags} from '@oclif/core'
 import { GROUP } from "osdu-workbench-sdk";
-import {AddGroup} from "osdu-workbench-sdk/dist/group/group.models";
 
 export default class GroupAdd extends Command {
   static description = 'Adds a group'
