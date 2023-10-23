@@ -1,7 +1,6 @@
 import * as fs from "fs";
 import * as os from "os";
 import inquirer from "inquirer";
-
 import { Command, ux } from "@oclif/core";
 
 const credentialsDir = `${os.homedir()}/.osdu`;

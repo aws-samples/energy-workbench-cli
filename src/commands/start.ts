@@ -11,7 +11,7 @@ async function welcome() {
   console.clear();
   console.log(
     chalk.hex("#FFA500")(
-      figlet.textSync("OSDU Workbench", {
+      figlet.textSync("EDI Workbench", {
         font: "Banner3",
         horizontalLayout: "full",
         whitespaceBreak: true,
@@ -20,7 +20,7 @@ async function welcome() {
   );
   console.log(
     chalk.green(
-      `\n\n🛠️  Get started building by following the prompts below...\n`
+      `\n\n🛠️  Get started with your workbench by following the prompts below...\n`
     )
   );
   console.log("\n");
@@ -44,7 +44,7 @@ export default class Start extends Command {
     const prompt: any = await inquirer.prompt([
       {
         type: "list",
-        message: "what would you like to build?",
+        message: "what would you like to do?",
         name: "start",
         choices: choices,
       },
