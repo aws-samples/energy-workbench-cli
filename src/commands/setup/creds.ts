@@ -41,6 +41,6 @@ export default class SetupCreds extends Command {
 
     this.log(`Saving API Key to ${os.homedir()}/.osdu/credentials`);
 
-    configure();
+    // configure();
   }
 }

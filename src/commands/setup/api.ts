@@ -28,6 +28,6 @@ export default class SetupApi extends Command {
       this.log(`you input --force and --file: ${args.file}`);
     }
 
-    configure();
+    // configure();
   }
 }

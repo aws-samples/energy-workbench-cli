@@ -25,8 +25,8 @@ export default class SetupExportCreds extends Command {
 
     this.log(`Exporting credentials from ${os.homedir()}/.osdu/credentials`);
 
-    exportCreds(flags.path).then(() => {
-      this.log("Credentials exported and now available for use!");
-    });
+    // exportCreds(flags.path).then(() => {
+    //   this.log("Credentials exported and now available for use!");
+    // });
   }
 }
