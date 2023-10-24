@@ -3,16 +3,8 @@ import * as os from "os";
 import inquirer from "inquirer";
 import { Command, ux } from "@oclif/core";
 
-const credentialsDir = `${os.homedir()}/.osdu`;
-const credentialsPath = `${credentialsDir}/credentials`;
-
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-// Check if .osdu directory exists, create if needed
-if (!fs.existsSync(credentialsDir)) {
-  fs.mkdirSync(credentialsDir, { recursive: true });
 }
 
 interface Credentials {
@@ -22,7 +14,7 @@ interface Credentials {
   cognitoPassword: string;
 }
 
-export async function configure(): Promise<string> {
+export async function configure(credentialsDir: string, credentialsPath: string): Promise<string> {
   // Prompt for credentials
   const answers = await inquirer.prompt<Credentials>([
     {
@@ -44,25 +36,34 @@ export async function configure(): Promise<string> {
     },
   ]);
 
+// Check if .osdu directory exists, create if needed
+if (!fs.existsSync(credentialsDir)) {
+  fs.mkdirSync(credentialsDir, { recursive: true });
+}
+
   // Save credentials to file
-  const credentials = `[${answers.profile}]\nosdu_client_id = ${answers.clientId}\nosdu_cognito_username = ${answers.cognitoUsername}\nosdu_cognito_password = ${answers.cognitoPassword}\n`;
+  const credentials = `[${answers.profile}]\nOSDU_CLIENT_ID = ${answers.clientId}\nOSDU_USERNAME = ${answers.cognitoUsername}\nOSDU_PASSWORD = ${answers.cognitoPassword}\n`;
 
   // Inform user
   console.log(`\n###########################################\n`);
   ux.action.start("💾 Saving credentials...");
-  fs.writeFileSync(credentialsPath, credentials);
-  await delay(2000);
+
+  if (fs.existsSync(credentialsPath)) {
+    fs.appendFileSync(credentialsPath, credentials);
+  } else {
+    fs.writeFileSync(credentialsPath, credentials);
+  }
+
+  await delay(1000);
   ux.action.stop(`✅`);
   console.log(`\n👾 Credentials saved to ${credentialsPath}\n`);
   ux.action.start("🔑🔓 Securing credentials...");
   fs.chmodSync(credentialsPath, 0o600);
-  await delay(2000);
+  await delay(1000);
   ux.action.stop(`✅`);
   console.log(
     `\n👾 Credential permissions modified so they are only readable and writable by current user.\n`
   );
-  ux.action.start("🔐📚 Reading up on security best practices...");
-  await delay(3000);
 
   ux.action.stop(`✅`);
   console.log(

@@ -3,7 +3,10 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 import figlet from "figlet";
 import { createSpinner } from "nanospinner";
+import fs from "fs";
+import os from "os";
 import { configure } from "../utils/setup/configure";
+import {exportCreds} from "../utils/setup/exports";
 
 const orange = chalk.hex("#FFA500");
 
@@ -26,6 +29,13 @@ async function welcome() {
   console.log("\n");
 }
 
+function parseProfiles(credentialsPath: string): string[] {
+  const fileContent = fs.readFileSync(credentialsPath, "utf-8");
+  const lines = fileContent.split("\n");
+  const profiles = lines.filter(line => line.startsWith('[')).map(profile => profile.replace(/[\[\]]/g, ""));
+  return profiles;
+}
+
 export default class Start extends Command {
   static description =
     "Basic start command implements a command prompt input workflow.";
@@ -36,9 +46,7 @@ export default class Start extends Command {
     welcome();
     const choices = [
       "🔐  configure credentials",
-      "📩  query an api",
-      "🚀  deploy a component",
-      "🏗️  build a new component",
+      "📩  export your credentials",
       "👋  get help",
     ];
     const prompt: any = await inquirer.prompt([
@@ -50,20 +58,28 @@ export default class Start extends Command {
       },
     ]);
 
+    const credentialsDir = `${os.homedir()}/.osdu`;
+    const credentialsPath = `${credentialsDir}/credentials`;
+
     const answer = prompt.start;
 
     if (answer === "🔐  configure credentials") {
       console.log("Configuring credentials 🪄");
-      configure();
+      configure(credentialsDir, credentialsPath);
     }
-    if (answer === "📩  query an api") {
-      console.log("This feature is coming soon!");
-    }
-    if (answer === "🚀  deploy a component") {
-      console.log("This feature is coming soon!");
-    }
-    if (answer === "🏗️  build a new component") {
-      console.log("This feature is coming soon!");
+    if (answer === "📩  export your credentials") {
+      console.log("Exporting default credentials");
+      const profiles = parseProfiles(credentialsPath);
+      const profilePrompt: any = await inquirer.prompt([
+        {
+          type: "list",
+          message: "Which profile would you like to export?",
+          name: "profile",
+          choices: profiles,
+        },
+      ]);
+      console.log(profilePrompt);
+      exportCreds(credentialsPath, profilePrompt.profile)
     }
     if (answer === "👋  get help") {
       console.log("This feature is coming soon!");
