@@ -3,7 +3,6 @@ import { GROUP } from "osdu-workbench-sdk";
 
 export default class GroupAdd extends Command {
   static description = 'Adds a group'
-
   static examples = [
     '<%= config.bin %> <%= command.id %>',
   ]
