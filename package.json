@@ -67,8 +67,8 @@
     "typescript": "^4.9.5"
   },
   "oclif": {
-    "bin": "owb",
-    "dirname": "owb",
+    "bin": "ewb",
+    "dirname": "ewb",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",

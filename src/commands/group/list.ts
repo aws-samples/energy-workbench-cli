@@ -4,7 +4,6 @@ import { displayGroupResults } from "../../utils/group/groupListTable";
 
 export default class GroupSearch extends Command {
   static description = 'List all groups for a specific instance.'
-
   static examples = [
     '<%= config.bin %> <%= command.id %>',
   ]
