@@ -1,223 +1,57 @@
-# 👋 Introduction
+# Contributing Guidelines
 
-oclif is a framework for building command line tools using Node.js and Typescript. It provides structure, best practices, and helpers to speed up CLI development.
+Thank you for your interest in contributing to our project. Whether it's a bug report, new feature, correction, or additional
+documentation, we greatly value feedback and contributions from our community.
 
-Some key features:
+Please read through this document before submitting any issues or pull requests to ensure we have all the necessary
+information to effectively respond to your bug report or contribution.
 
-- Easy command organization
-- Powerful command line argument parsing
-- Help text generation
-- Git-based plugins
-- Testing helpers
-- Reads from stdin and stdout
+## Reporting Bugs/Feature Requests
 
-By using oclif we can speed up our CLI development process significantly.
+We welcome you to use the GitHub issue tracker to report bugs or suggest features.
 
-## 🤖 How oclif Works
+When filing an issue, please check existing open, or recently closed, issues to make sure somebody else hasn't already
+reported the issue. Please try to include as much information as you can. Details like these are incredibly useful:
 
-The core components of oclif include:
+- A reproducible test case or series of steps
+- The version of our code being used
+- Any modifications you've made relevant to the bug
+- Anything unusual about your environment or deployment
 
-```mermaid
-graph TD
-    A[oclif] --> B[Commands]
-    B --> C[command.ts]
-    C --> D[Args]
-    C --> E[Flags]
-    A --> F[Plugins]
-    A --> G[Hooks]
-    A --> H[Templates]
-```
+## Contributing via Pull Requests
 
-- **Commands** - Contains the logic for each command in a class. Stored in `src/commands`.
-- **Args** - Defines the arguments passed to a command.
-- **Flags** - Optional flags to modify command behavior.
-- **Plugins** - Extend CLI functionality using Node.js modules.
-- **Hooks** - Execute code before/after commands and other events.
-- **Templates** - Quickly generate code for new components.
+Contributions via pull requests are much appreciated. Before sending us a pull request, please ensure that:
 
-So oclif provides structure via commands, takes care of input parsing, allows extension via plugins, and makes it easy to add new features.
+1. You are working against the latest source on the _main_ branch.
+2. You check existing open, and recently merged, pull requests to make sure someone else hasn't addressed the problem already.
+3. You open an issue to discuss any significant work - we would hate for your time to be wasted.
 
-# 👩‍💻 Contributing Commands
+To send us a pull request, please:
 
-To add a new command:
+1. Fork the repository.
+2. Modify the source; please focus on the specific change you are contributing. If you also reformat all the code, it will be hard for us to focus on your change.
+3. Ensure local tests pass.
+4. Commit to your fork using clear commit messages.
+5. Send us a pull request, answering any default questions in the pull request interface.
+6. Pay attention to any automated CI failures reported in the pull request, and stay involved in the conversation.
 
-## 1. Generate Command
-Go to osdu-workbench-cli
-make sure oclif is installed.<br>
-You can check if oclif is installed with `oclif --version`.
+GitHub provides additional document on [forking a repository](https://help.github.com/articles/fork-a-repo/) and
+[creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
-```
-oclif generate command mynewcommand
-```
+## Finding contributions to work on
 
-This scaffolds a new command class in `src/commands/mycommand.ts`.
+Looking at the existing issues is a great way to find something to contribute on. As our projects, by default, use the default GitHub issue labels (enhancement/bug/duplicate/help wanted/invalid/question/wontfix), looking at any 'help wanted' issues is a great place to start.
 
-You can modify this command class by adding flags, keywords, descriptions, subcommands.
+## Code of Conduct
 
-## 2. Implement Logic
+This project has adopted the [Amazon Open Source Code of Conduct](https://aws.github.io/code-of-conduct).
+For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq) or contact
+opensource-codeofconduct@amazon.com with any additional questions or comments.
 
-- Add JSDoc comment description
-- Define command arguments/flags
-- Write the command logic in `run()` for each command
-- Wherever possible use helper modules and functions
-- Write helper modules in the `./src/utils` directory and import
+## Security issue notifications
 
-Here is an example of a new module:
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public github issue.
 
-```typescript
-import { Args, Command, Flags } from "@oclif/core";
-import { Search } from "osdu-workbench-sdk";
-import { displaySearchResults } from "../../utils/search/searchQueryTable";
-/**
- * Search command to query data using a kind value.
- *
- * This allows searching OSDU data by specifying a kind
- * string to search for. It uses the SearchClient from
- * the osdu-workbench SDK to make the authorized API request.
- *
- * The results are displayed in a table using the cli-table module.
- */
-export default class SearchKind extends Command {
-    /**
-     * Description shown in command list
-     */
-    static description = "Perform a search using a kind parameter";
+## Licensing
 
-    /**
-     * Example commands
-     */
-    static examples = [
-        `<%= config.bin %> <%= command.id %> osdu:wks:kind-string`,
-    ];
-
-    /**
-     * Argument for search query
-     */
-    static args = {
-        query: Args.string({
-            description: "The kind query value to search for records",
-        }),
-    };
-
-    /**
-     * Handle command execution
-     */
-    async run() {
-        /**
-         * Parse CLI arguments
-         */
-        const {args} = this.parse(SearchKind);
-
-        /**
-         * OSDU search client
-         */
-        this.log(`Searching with parameter: kind and query: ${args.query}. `);
-
-        // instantiate an instance of the search client
-        const search = new Search.GroupClient(
-            "https://osdu.osdupsdemo.install.osdu.aws",
-            "us-east-1"
-        );
-
-        const q = args.query;
-
-        if (!q) {
-            this.error("No query supplied!");
-        }
-
-        const response = await search.query({
-            kind: q,
-        });
-
-        displaySearchResults(response);
-    }
-}
-```
-
-Here are some steps to generate and customize an oclif command with utils functions:
-
-### Creating an Oclif Command
-
-1. Generate a new command
-
-   ```bash
-   cd osdu-workbench-cli
-   oclif generate command mynewcommand
-   ```
-
-   This will create the scaffolding in `./src/commands/mynewcommand.ts`
-
-2. Modify the command description and examples in the class:
-
-   ```ts
-   static description = "My command description";
-
-   static examples = [
-     `mycommand example1`,
-     `mycommand example2`
-   ];
-   ```
-
-3. Add command arguments if needed:
-
-   ```ts
-   static args = {
-     myArg: Args.string()
-   };
-   ```
-
-4. Implement the `run()` method to execute the command logic.
-
-### Adding Custom Utils Functions
-
-1. Create a directory for the command utils functions.
-
-   For a `mycommand` command, create `./src/utils/mycommand`.
-
-2. Add utils files to match the command name:
-
-   ```sh
-   /utils
-     /mycommand
-       mycommand.utils.ts
-   ```
-
-3. Export functions from the utils file:
-
-   ```ts
-   // mycommand.utils.ts
-
-   export function doSomething() {
-     // ...
-   }
-   ```
-
-4. Import and use the utils function in the command:
-
-   ```ts
-   import { doSomething } from '../utils/mycommand/mycommand.utils';
-
-   async run() {
-     doSomething();
-   }
-   ```
-
-This allows keeping the command logic neatly organized with related utils functions.
-
-### 3. Build and Test
-
-```sh
-npm run build
-./bin/run mycommand
-```
-
-## 4. Update Docs
-
-```sh
-oclif readme
-oclif docs
-```
-
-## 5. Open Pull Request
-
-Submit PR with new command to merge into master.
+See the [LICENSE](LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.
