@@ -5,11 +5,13 @@ import { displayMemberResults } from "../../utils/member/memberListTable";
 export default class MemberList extends Command {
   static description = 'List all members for a specific group.'
   static examples = [
-    '<%= config.bin %> <%= command.id %>',
+    '<%= config.bin %> <%= command.id %> users.datalake.admins@osdu.example.com'
   ]
 
   static args = {
-    groupToList: Args.string({ description: "Group to list members from" }),
+    groupToList: Args.string({
+      required: true,
+      description: "Group to list members from." }),
   };
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(MemberList)
