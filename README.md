@@ -1,4 +1,4 @@
-# osdu-workbench-cli
+# Energy Workbench CLI
 
 This command line interface automates development and operational tasks for OSDU open source software. The workbench combines pre-built software modules, data operations via SDK, and common operational commands into a single command line interface. OSDU Workbench (owb) reduces common operations that take days or weeks to hours or minutes.
 

@@ -1,15 +1,15 @@
 {
-  "name": "osdu-workbench-cli",
+  "name": "energy-workbench-cli",
   "version": "0.0.0",
   "description": "Workbench CLI + SDK + module library to serve as companion toolkit for OSDU on AWS.",
   "author": "AWS for Energy",
   "bin": {
     "ewb": "./bin/run"
   },
-  "homepage": "https://github.com/samwardbiddle/osdu-workbench",
+  "homepage": "https://github.com/aws-samples/energy-workbench-cli",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "samwardbiddle/osdu-workbench",
+  "repository": "aws-samples/energy-workbench-cli",
   "files": [
     "/bin",
     "/dist",
