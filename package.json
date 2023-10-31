@@ -1,6 +1,6 @@
 {
-  "name": "energy-workbench-cli",
-  "version": "0.0.0",
+  "name": "@aws/energy-workbench-cli",
+  "version": "0.0.1",
   "description": "Workbench CLI + SDK + module library to serve as companion toolkit for OSDU on AWS.",
   "author": "AWS for Energy",
   "bin": {
@@ -17,6 +17,7 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
+    "@aws/energy-workbench-sdk": "^0.0.1",
     "@oclif/core": "^2",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.4.7",

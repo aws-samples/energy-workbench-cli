@@ -1,9 +1,10 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { Search } from "osdu-workbench-sdk";
+import { Search } from "@aws/energy-workbench-sdk";
 import { displaySearchResults } from "../../utils/search/searchQueryTable";
 
 export default class SearchKind extends Command {
-  static description = "Perform a search call using the kind key and flags for query and limit";
+  static description =
+    "Perform a search call using the kind key and flags for query and limit";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> osdu:wks:master-data--Well:1.0.0",
@@ -14,9 +15,11 @@ export default class SearchKind extends Command {
   };
 
   static flags = {
-    query: Flags.string({ description: "Specific query to run", char: 'q' }),
-    limit: Flags.integer( {description: "How many lines to return"}),
-    table: Flags.string( {description: "What format to display search results"})
+    query: Flags.string({ description: "Specific query to run", char: "q" }),
+    limit: Flags.integer({ description: "How many lines to return" }),
+    table: Flags.string({
+      description: "What format to display search results",
+    }),
   };
 
   public async run(): Promise<void> {
@@ -36,16 +39,15 @@ export default class SearchKind extends Command {
     const response = await search.query({
       kind: k,
       query: specificQuery,
-      limit: specificLimit
+      limit: specificLimit,
     });
 
-    console.log(tableFormat)
+    console.log(tableFormat);
 
     if (tableFormat == "yes") {
       displaySearchResults(response);
     } else {
-      console.log(JSON.stringify(response, null, 2))
+      console.log(JSON.stringify(response, null, 2));
     }
   }
-
 }
