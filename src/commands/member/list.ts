@@ -1,6 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { MEMBER } from "@aws/energy-workbench-sdk";
 import { displayMemberResults } from "../../utils/member/memberListTable";
+import { validateEnv } from "../../utils/config/config";
 
 export default class MemberList extends Command {
   static description = "List all members for a specific group.";
@@ -16,8 +17,10 @@ export default class MemberList extends Command {
   };
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(MemberList);
-    const baseURL = "https://osdu.osdupsdemo.install.osdu.aws";
-    const member = new MEMBER.Members(baseURL, "us-east-1");
+
+    const config = validateEnv();
+
+    const member = new MEMBER.Members(config.endpoint, config.region);
     const g = args.groupToList || "";
     const response = await member.query(g);
     displayMemberResults(response);

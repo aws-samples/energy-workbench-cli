@@ -6,7 +6,7 @@ import { createSpinner } from "nanospinner";
 import fs from "fs";
 import os from "os";
 import { configure } from "../utils/setup/configure";
-import {exportCreds} from "../utils/setup/exports";
+import { exportCreds } from "../utils/setup/exports";
 
 const orange = chalk.hex("#FFA500");
 
@@ -23,7 +23,7 @@ async function welcome() {
   );
   console.log(
     chalk.green(
-      `\n\n🛠️  Get started with your workbench by following the prompts below...\n`
+      `\n\n🛠️  Get started with the workbench by following the prompts below...\n`
     )
   );
   console.log("\n");
@@ -32,7 +32,9 @@ async function welcome() {
 function parseProfiles(credentialsPath: string): string[] {
   const fileContent = fs.readFileSync(credentialsPath, "utf-8");
   const lines = fileContent.split("\n");
-  const profiles = lines.filter(line => line.startsWith('[')).map(profile => profile.replace(/[\[\]]/g, ""));
+  const profiles = lines
+    .filter((line) => line.startsWith("["))
+    .map((profile) => profile.replace(/[\[\]]/g, ""));
   return profiles;
 }
 
@@ -79,7 +81,7 @@ export default class Start extends Command {
         },
       ]);
       console.log(profilePrompt);
-      exportCreds(credentialsPath, profilePrompt.profile)
+      exportCreds(credentialsPath, profilePrompt.profile);
     }
     if (answer === "👋  get help") {
       console.log("This feature is coming soon!");

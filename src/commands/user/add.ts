@@ -7,11 +7,12 @@ export default class UserAddCli extends Command {
   static args = {
     userName: Args.string({ description: "User to add" }),
     userPassword: Args.string({ description: "Password to add" }),
+    poolId: Args.string({ description: "Cognito Pool ID" }),
   };
 
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(UserAddCli);
-    const poolId = "us-east-1_yPBozDpy1";
+    const poolId = args.poolId || "";
     const addUserInstance = new USER.AddUser(poolId);
     const newUser = args.userName || "";
     const tempPass = args.userPassword || "";

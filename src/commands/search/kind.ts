@@ -1,6 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { Search } from "@aws/energy-workbench-sdk";
 import { displaySearchResults } from "../../utils/search/searchQueryTable";
+import { validateEnv } from "../../utils/config/config";
 
 export default class SearchKind extends Command {
   static description =
@@ -28,11 +29,11 @@ export default class SearchKind extends Command {
     const specificLimit = flags.limit || 10;
     const tableFormat = flags.table || "no";
 
+    // check to environmental variable presence
+    const config = validateEnv();
+
     // instantiate an instance of the search client
-    const search = new Search.SearchClient(
-      "https://osdu.osdupsdemo.install.osdu.aws",
-      "us-east-1"
-    );
+    const search = new Search.SearchClient(config.endpoint, config.region);
 
     const k = args.kind || "";
 

@@ -1,5 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { MEMBER } from "@aws/energy-workbench-sdk";
+import { validateEnv } from "../../utils/config/config";
 
 export default class MemberAdd extends Command {
   static description = "Add a member to a specific group with a defined role.";
@@ -23,8 +24,12 @@ export default class MemberAdd extends Command {
   };
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(MemberAdd);
-    const baseURL = "https://osdu.osdupsdemo.install.osdu.aws";
-    const memberAdd = new MEMBER.MemberAdd(baseURL, "us-east-1");
+
+    // check for environmental variable presence
+    const config = validateEnv();
+
+    // instantiate an instance of the search client
+    const memberAdd = new MEMBER.MemberAdd(config.endpoint, config.region);
 
     const g = args.groupName || "";
     const m = args.memberName || "";
