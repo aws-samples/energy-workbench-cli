@@ -31,8 +31,10 @@ USAGE
 ## Commands
 
 <!-- commands -->
+* [`ewb config [ENCRYPT]`](#ewb-config-encrypt)
 * [`ewb create module [TEMPLATE]`](#ewb-create-module-template)
 * [`ewb create project [TEMPLATE]`](#ewb-create-project-template)
+* [`ewb export`](#ewb-export)
 * [`ewb group add [GROUPTOADD]`](#ewb-group-add-grouptoadd)
 * [`ewb group list`](#ewb-group-list)
 * [`ewb help [COMMANDS]`](#ewb-help-commands)
@@ -49,9 +51,33 @@ USAGE
 * [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-2)
 * [`ewb plugins update`](#ewb-plugins-update)
 * [`ewb search kind [KIND]`](#ewb-search-kind-kind)
-* [`ewb setup creds [ENCRYPT]`](#ewb-setup-creds-encrypt)
 * [`ewb start`](#ewb-start)
-* [`ewb user add [USERNAME] [USERPASSWORD]`](#ewb-user-add-username-userpassword)
+* [`ewb user add [USERNAME] [USERPASSWORD] [POOLID]`](#ewb-user-add-username-userpassword-poolid)
+
+## `ewb config [ENCRYPT]`
+
+Configures credentials and saves them to local file.
+
+```
+USAGE
+  $ ewb config [ENCRYPT] [-p <value>] [-k <value>] [-s <value>]
+
+ARGUMENTS
+  ENCRYPT  Encrypt secret
+
+FLAGS
+  -k, --format=<value>   API Key
+  -p, --source=<value>   [default: default] OSDU User Profile to Use
+  -s, --display=<value>  API Secret
+
+DESCRIPTION
+  Configures credentials and saves them to local file.
+
+EXAMPLES
+  $ ewb config --profile 'example' --ApiKey 'yourKey' --ApiSecret 'abc123'
+```
+
+_See code: [dist/commands/config.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/config.ts)_
 
 ## `ewb create module [TEMPLATE]`
 
@@ -92,6 +118,26 @@ DESCRIPTION
 EXAMPLES
   $ ewb create project 'app' --template 'example' --git 'true' --cicd 'true'
 ```
+
+## `ewb export`
+
+Export credentials to local command line session.
+
+```
+USAGE
+  $ ewb export [-p <value>]
+
+FLAGS
+  -p, --profile=<value>  [default: default] Local configuration profile to use
+
+DESCRIPTION
+  Export credentials to local command line session.
+
+EXAMPLES
+  $ ewb export --profile 'example'
+```
+
+_See code: [dist/commands/export.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/export.ts)_
 
 ## `ewb group add [GROUPTOADD]`
 
@@ -458,29 +504,6 @@ EXAMPLES
   $ ewb search kind osdu:wks:master-data--Well:1.0.0
 ```
 
-## `ewb setup creds [ENCRYPT]`
-
-Configures credentials and saves them to local file.
-
-```
-USAGE
-  $ ewb setup creds [ENCRYPT] [-p <value>] [-k <value>] [-s <value>]
-
-ARGUMENTS
-  ENCRYPT  Encrypt secret
-
-FLAGS
-  -k, --format=<value>   API Key
-  -p, --source=<value>   [default: default] OSDU User Profile to Use
-  -s, --display=<value>  API Secret
-
-DESCRIPTION
-  Configures credentials and saves them to local file.
-
-EXAMPLES
-  $ ewb setup creds --profile 'example' --ApiKey 'yourKey' --ApiSecret 'abc123'
-```
-
 ## `ewb start`
 
 Basic start command implements a command prompt input workflow.
@@ -498,17 +521,18 @@ EXAMPLES
 
 _See code: [dist/commands/start.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/start.ts)_
 
-## `ewb user add [USERNAME] [USERPASSWORD]`
+## `ewb user add [USERNAME] [USERPASSWORD] [POOLID]`
 
 Adds a user to a cognito user pool
 
 ```
 USAGE
-  $ ewb user add [USERNAME] [USERPASSWORD]
+  $ ewb user add [USERNAME] [USERPASSWORD] [POOLID]
 
 ARGUMENTS
   USERNAME      User to add
   USERPASSWORD  Password to add
+  POOLID        Cognito Pool ID
 
 DESCRIPTION
   Adds a user to a cognito user pool

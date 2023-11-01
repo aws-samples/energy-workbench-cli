@@ -14,7 +14,6 @@ export function exportEnv(
   let exporting = false;
 
   config.split("\n").forEach((line) => {
-    console.log(line);
     if (line.startsWith("[") && line.endsWith("]")) {
       exporting = false;
     }
