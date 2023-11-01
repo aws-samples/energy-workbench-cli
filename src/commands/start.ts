@@ -6,7 +6,7 @@ import { createSpinner } from "nanospinner";
 import fs from "fs";
 import os from "os";
 import { configure } from "../utils/setup/configure";
-import { exportCreds } from "../utils/setup/exports";
+import { exportEnv } from "../utils/setup/exports";
 
 const orange = chalk.hex("#FFA500");
 
@@ -67,7 +67,7 @@ export default class Start extends Command {
 
     if (answer === "🔐  configure credentials") {
       console.log("Configuring credentials 🪄");
-      configure(credentialsDir, credentialsPath);
+      configure(credentialsDir);
     }
     if (answer === "📩  export your credentials") {
       console.log("Exporting default credentials");
@@ -81,7 +81,7 @@ export default class Start extends Command {
         },
       ]);
       console.log(profilePrompt);
-      exportCreds(credentialsPath, profilePrompt.profile);
+      exportEnv(profilePrompt.profile, credentialsPath, "OSDU");
     }
     if (answer === "👋  get help") {
       console.log("This feature is coming soon!");
