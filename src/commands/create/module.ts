@@ -68,13 +68,13 @@ export default class CreateModule extends Command {
       [
         {
           searchTerm: "APPLICATION_NAME",
-          replaceWith: "OSDU Workbench Demo",
+          replaceWith: "Enerdy Workbench Demo",
         },
       ]
     );
     ux.action.stop("✅");
     console.log(
-      `Replaced all instances of APPLICATION_NAME with OSDU Workbench Demo`
+      `Replaced all instances of APPLICATION_NAME with Energy Workbench Demo`
     );
     console.log(`🚀 Moved ${answer} template to ${path.dirname(__filename)}`);
   }

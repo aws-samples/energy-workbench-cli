@@ -1,8 +1,8 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { configure } from "../../utils/setup/configure";
+import { configure } from "../utils/setup/configure";
 import * as os from "os";
 
-export default class SetupCreds extends Command {
+export default class Config extends Command {
   static description = "Configures credentials and saves them to local file.";
 
   static examples = [
@@ -37,10 +37,10 @@ export default class SetupCreds extends Command {
   };
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse(SetupCreds);
+    const { args, flags } = await this.parse(Config);
 
     this.log(`Saving API Key to ${os.homedir()}/.osdu/credentials`);
 
-    // configure();
+    configure(`${os.homedir()}/.osdu/`);
   }
 }

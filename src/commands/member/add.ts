@@ -1,27 +1,35 @@
-import {Args, Command, Flags} from '@oclif/core'
-import { MEMBER } from "osdu-workbench-sdk";
+import { Args, Command, Flags } from "@oclif/core";
+import { MEMBER } from "@aws/energy-workbench-sdk";
+import { validateEnv } from "../../utils/config/config";
 
 export default class MemberAdd extends Command {
-  static description = 'Add a member to a specific group with a defined role.'
+  static description = "Add a member to a specific group with a defined role.";
   static examples = [
-    '<%= config.bin %> <%= command.id %> users.datalake.admins@osdu.example.com test@testing.com OWNER'
-  ]
+    "<%= config.bin %> <%= command.id %> users.datalake.admins@osdu.example.com test@testing.com OWNER",
+  ];
 
   static args = {
     groupName: Args.string({
       required: true,
-      description: "Group to add member to." }),
+      description: "Group to add member to.",
+    }),
     memberName: Args.string({
       required: true,
-      description: "Member to add to the group." }),
+      description: "Member to add to the group.",
+    }),
     role: Args.string({
       required: true,
-      description: "Role to add member with." }),
+      description: "Role to add member with.",
+    }),
   };
   public async run(): Promise<void> {
-    const {args, flags} = await this.parse(MemberAdd)
-    const baseURL = "https://osdu.osdupsdemo.install.osdu.aws";
-    const memberAdd = new MEMBER.MemberAdd(baseURL, "us-east-1");
+    const { args, flags } = await this.parse(MemberAdd);
+
+    // check for environmental variable presence
+    const config = validateEnv();
+
+    // instantiate an instance of the search client
+    const memberAdd = new MEMBER.MemberAdd(config.endpoint, config.region);
 
     const g = args.groupName || "";
     const m = args.memberName || "";
@@ -29,6 +37,6 @@ export default class MemberAdd extends Command {
 
     const response = await memberAdd.add(g, m, r);
 
-    console.log(response)
+    console.log(response);
   }
 }

@@ -1,10 +1,9 @@
-# osdu-workbench-cli
+# Energy Workbench CLI
 
 This command line interface automates development and operational tasks for OSDU open source software. The workbench combines pre-built software modules, data operations via SDK, and common operational commands into a single command line interface. OSDU Workbench (owb) reduces common operations that take days or weeks to hours or minutes.
 
 <!-- toc -->
-
-- [osdu-workbench-cli](#osdu-workbench-cli)
+* [Energy Workbench CLI](#energy-workbench-cli)
 <!-- tocstop -->
 
 ## Usage
@@ -16,55 +15,77 @@ This command line interface automates development and operational tasks for OSDU
 ```
 
 <!-- usage -->
-
 ```sh-session
-$ npm install -g osdu-workbench
-$ owb COMMAND
+$ npm install -g @aws/energy-workbench-cli
+$ ewb COMMAND
 running command...
-$ owb (--version)
-osdu-workbench/0.0.0 darwin-arm64 node-v19.9.0
-$ owb --help [COMMAND]
+$ ewb (--version)
+@aws/energy-workbench-cli/0.0.1 darwin-arm64 node-v19.9.0
+$ ewb --help [COMMAND]
 USAGE
-  $ owb COMMAND
+  $ ewb COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
+* [`ewb config [ENCRYPT]`](#ewb-config-encrypt)
+* [`ewb create module [TEMPLATE]`](#ewb-create-module-template)
+* [`ewb create project [TEMPLATE]`](#ewb-create-project-template)
+* [`ewb export`](#ewb-export)
+* [`ewb group add [GROUPTOADD]`](#ewb-group-add-grouptoadd)
+* [`ewb group list`](#ewb-group-list)
+* [`ewb help [COMMANDS]`](#ewb-help-commands)
+* [`ewb member add GROUPNAME MEMBERNAME ROLE`](#ewb-member-add-groupname-membername-role)
+* [`ewb member groups MEMBERTOLIST`](#ewb-member-groups-membertolist)
+* [`ewb member list GROUPTOLIST`](#ewb-member-list-grouptolist)
+* [`ewb plugins`](#ewb-plugins)
+* [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin)
+* [`ewb plugins:inspect PLUGIN...`](#ewb-pluginsinspect-plugin)
+* [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin-1)
+* [`ewb plugins:link PLUGIN`](#ewb-pluginslink-plugin)
+* [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin)
+* [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-1)
+* [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-2)
+* [`ewb plugins update`](#ewb-plugins-update)
+* [`ewb search kind [KIND]`](#ewb-search-kind-kind)
+* [`ewb start`](#ewb-start)
+* [`ewb user add [USERNAME] [USERPASSWORD] [POOLID]`](#ewb-user-add-username-userpassword-poolid)
 
-- [`owb create module [TEMPLATE]`](#owb-create-module-template)
-- [`owb create project [TEMPLATE]`](#owb-create-project-template)
-- [`owb data delete [FILE]`](#owb-data-delete-file)
-- [`owb data get [DATA] [COMMENT]`](#owb-data-get-data-comment)
-- [`owb data post [FILE]`](#owb-data-post-file)
-- [`owb data update [FILE]`](#owb-data-update-file)
-- [`owb deploy application [FILE]`](#owb-deploy-application-file)
-- [`owb help [COMMANDS]`](#owb-help-commands)
-- [`owb plugins`](#owb-plugins)
-- [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin)
-- [`owb plugins:inspect PLUGIN...`](#owb-pluginsinspect-plugin)
-- [`owb plugins:install PLUGIN...`](#owb-pluginsinstall-plugin-1)
-- [`owb plugins:link PLUGIN`](#owb-pluginslink-plugin)
-- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin)
-- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-1)
-- [`owb plugins:uninstall PLUGIN...`](#owb-pluginsuninstall-plugin-2)
-- [`owb plugins update`](#owb-plugins-update)
-- [`owb search [FILE]`](#owb-search-file)
-- [`owb setup api [FILE]`](#owb-setup-api-file)
-- [`owb setup creds [ENCRYPT]`](#owb-setup-creds-encrypt)
-- [`owb setup templates [FILE]`](#owb-setup-templates-file)
-- [`owb start`](#owb-start)
+## `ewb config [ENCRYPT]`
 
-## `owb create module [TEMPLATE]`
+Configures credentials and saves them to local file.
+
+```
+USAGE
+  $ ewb config [ENCRYPT] [-p <value>] [-k <value>] [-s <value>]
+
+ARGUMENTS
+  ENCRYPT  Encrypt secret
+
+FLAGS
+  -k, --format=<value>   API Key
+  -p, --source=<value>   [default: default] OSDU User Profile to Use
+  -s, --display=<value>  API Secret
+
+DESCRIPTION
+  Configures credentials and saves them to local file.
+
+EXAMPLES
+  $ ewb config --profile 'example' --ApiKey 'yourKey' --ApiSecret 'abc123'
+```
+
+_See code: [dist/commands/config.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/config.ts)_
+
+## `ewb create module [TEMPLATE]`
 
 Add a new module to an existing project
 
 ```
 USAGE
-  $ owb create module [TEMPLATE]
+  $ ewb create module [TEMPLATE]
 
 ARGUMENTS
   TEMPLATE  Template
@@ -73,16 +94,16 @@ DESCRIPTION
   Add a new module to an existing project
 
 EXAMPLES
-  $ owb create module 'app' --template 'example' --git 'true' --cicd 'true'
+  $ ewb create module 'app' --template 'example' --git 'true' --cicd 'true'
 ```
 
-## `owb create project [TEMPLATE]`
+## `ewb create project [TEMPLATE]`
 
 Start new application or project from a template
 
 ```
 USAGE
-  $ owb create project [TEMPLATE] [-g <value>] [-c <value>]
+  $ ewb create project [TEMPLATE] [-g <value>] [-c <value>]
 
 ARGUMENTS
   TEMPLATE  Template
@@ -95,128 +116,69 @@ DESCRIPTION
   Start new application or project from a template
 
 EXAMPLES
-  $ owb create project 'app' --template 'example' --git 'true' --cicd 'true'
+  $ ewb create project 'app' --template 'example' --git 'true' --cicd 'true'
 ```
 
-## `owb data delete [FILE]`
+## `ewb export`
 
-describe the command here
+Export credentials to local command line session.
 
 ```
 USAGE
-  $ owb data delete [FILE] [-n <value>] [-f]
-
-ARGUMENTS
-  FILE  file to read
+  $ ewb export [-p <value>]
 
 FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
+  -p, --profile=<value>  [default: default] Local configuration profile to use
 
 DESCRIPTION
-  describe the command here
+  Export credentials to local command line session.
 
 EXAMPLES
-  $ owb data delete
+  $ ewb export --profile 'example'
 ```
 
-## `owb data get [DATA] [COMMENT]`
+_See code: [dist/commands/export.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/export.ts)_
 
-Gets data via API using local SDK.
+## `ewb group add [GROUPTOADD]`
+
+Adds a group
 
 ```
 USAGE
-  $ owb data get [DATA] [COMMENT] -s <value> [-f <value>] [-d <value>]
+  $ ewb group add [GROUPTOADD]
 
 ARGUMENTS
-  DATA     Data type
-  COMMENT  Comment
-
-FLAGS
-  -d, --display=<value>  [default: csv] Format to display data
-  -f, --format=<value>   [default: csv] Format of data to get.
-  -s, --source=<value>   (required) [default: test] Source of data
+  GROUPTOADD  Group to add
 
 DESCRIPTION
-  Gets data via API using local SDK.
+  Adds a group
 
 EXAMPLES
-  $ owb data get 'geo' --source 'example' --format 'csv' --display 'shell'
+  $ ewb group add
 ```
 
-## `owb data post [FILE]`
+## `ewb group list`
 
-describe the command here
+List all groups for a specific instance.
 
 ```
 USAGE
-  $ owb data post [FILE] [-n <value>] [-f]
-
-ARGUMENTS
-  FILE  file to read
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
+  $ ewb group list
 
 DESCRIPTION
-  describe the command here
+  List all groups for a specific instance.
 
 EXAMPLES
-  $ owb data post
+  $ ewb group list
 ```
 
-## `owb data update [FILE]`
+## `ewb help [COMMANDS]`
 
-describe the command here
+Display help for ewb.
 
 ```
 USAGE
-  $ owb data update [FILE] [-n <value>] [-f]
-
-ARGUMENTS
-  FILE  file to read
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ owb data update
-```
-
-## `owb deploy application [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ owb deploy application [FILE] [-n <value>] [-f]
-
-ARGUMENTS
-  FILE  file to read
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ owb deploy application
-```
-
-## `owb help [COMMANDS]`
-
-Display help for owb.
-
-```
-USAGE
-  $ owb help [COMMANDS] [-n]
+  $ ewb help [COMMANDS] [-n]
 
 ARGUMENTS
   COMMANDS  Command to show help for.
@@ -225,18 +187,74 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for owb.
+  Display help for ewb.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.19/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.20/src/commands/help.ts)_
 
-## `owb plugins`
+## `ewb member add GROUPNAME MEMBERNAME ROLE`
+
+Add a member to a specific group with a defined role.
+
+```
+USAGE
+  $ ewb member add GROUPNAME MEMBERNAME ROLE
+
+ARGUMENTS
+  GROUPNAME   Group to add member to.
+  MEMBERNAME  Member to add to the group.
+  ROLE        Role to add member with.
+
+DESCRIPTION
+  Add a member to a specific group with a defined role.
+
+EXAMPLES
+  $ ewb member add users.datalake.admins@osdu.example.com test@testing.com OWNER
+```
+
+## `ewb member groups MEMBERTOLIST`
+
+List all groups for a specific member.
+
+```
+USAGE
+  $ ewb member groups MEMBERTOLIST
+
+ARGUMENTS
+  MEMBERTOLIST  Member to list groups from.
+
+DESCRIPTION
+  List all groups for a specific member.
+
+EXAMPLES
+  $ ewb member groups user@testing.com
+```
+
+## `ewb member list GROUPTOLIST`
+
+List all members for a specific group.
+
+```
+USAGE
+  $ ewb member list GROUPTOLIST
+
+ARGUMENTS
+  GROUPTOLIST  Group to list members from.
+
+DESCRIPTION
+  List all members for a specific group.
+
+EXAMPLES
+  $ ewb member list users.datalake.admins@osdu.example.com
+```
+
+## `ewb plugins`
 
 List installed plugins.
 
 ```
 USAGE
-  $ owb plugins [--core]
+  $ ewb plugins [--core]
 
 FLAGS
   --core  Show core plugins.
@@ -245,18 +263,18 @@ DESCRIPTION
   List installed plugins.
 
 EXAMPLES
-  $ owb plugins
+  $ ewb plugins
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/index.ts)_
 
-## `owb plugins:install PLUGIN...`
+## `ewb plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ owb plugins:install PLUGIN...
+  $ ewb plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -278,23 +296,23 @@ DESCRIPTION
 
 
 ALIASES
-  $ owb plugins add
+  $ ewb plugins add
 
 EXAMPLES
-  $ owb plugins:install myplugin
+  $ ewb plugins:install myplugin 
 
-  $ owb plugins:install https://github.com/someuser/someplugin
+  $ ewb plugins:install https://github.com/someuser/someplugin
 
-  $ owb plugins:install someuser/someplugin
+  $ ewb plugins:install someuser/someplugin
 ```
 
-## `owb plugins:inspect PLUGIN...`
+## `ewb plugins:inspect PLUGIN...`
 
 Displays installation properties of a plugin.
 
 ```
 USAGE
-  $ owb plugins:inspect PLUGIN...
+  $ ewb plugins:inspect PLUGIN...
 
 ARGUMENTS
   PLUGIN  [default: .] Plugin to inspect.
@@ -310,16 +328,16 @@ DESCRIPTION
   Displays installation properties of a plugin.
 
 EXAMPLES
-  $ owb plugins:inspect myplugin
+  $ ewb plugins:inspect myplugin
 ```
 
-## `owb plugins:install PLUGIN...`
+## `ewb plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ owb plugins:install PLUGIN...
+  $ ewb plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -341,23 +359,23 @@ DESCRIPTION
 
 
 ALIASES
-  $ owb plugins add
+  $ ewb plugins add
 
 EXAMPLES
-  $ owb plugins:install myplugin
+  $ ewb plugins:install myplugin 
 
-  $ owb plugins:install https://github.com/someuser/someplugin
+  $ ewb plugins:install https://github.com/someuser/someplugin
 
-  $ owb plugins:install someuser/someplugin
+  $ ewb plugins:install someuser/someplugin
 ```
 
-## `owb plugins:link PLUGIN`
+## `ewb plugins:link PLUGIN`
 
 Links a plugin into the CLI for development.
 
 ```
 USAGE
-  $ owb plugins:link PLUGIN
+  $ ewb plugins:link PLUGIN
 
 ARGUMENTS
   PATH  [default: .] path to plugin
@@ -375,16 +393,16 @@ DESCRIPTION
 
 
 EXAMPLES
-  $ owb plugins:link myplugin
+  $ ewb plugins:link myplugin
 ```
 
-## `owb plugins:uninstall PLUGIN...`
+## `ewb plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ owb plugins:uninstall PLUGIN...
+  $ ewb plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -397,17 +415,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ owb plugins unlink
-  $ owb plugins remove
+  $ ewb plugins unlink
+  $ ewb plugins remove
 ```
 
-## `owb plugins:uninstall PLUGIN...`
+## `ewb plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ owb plugins:uninstall PLUGIN...
+  $ ewb plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -420,17 +438,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ owb plugins unlink
-  $ owb plugins remove
+  $ ewb plugins unlink
+  $ ewb plugins remove
 ```
 
-## `owb plugins:uninstall PLUGIN...`
+## `ewb plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ owb plugins:uninstall PLUGIN...
+  $ ewb plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -443,17 +461,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ owb plugins unlink
-  $ owb plugins remove
+  $ ewb plugins unlink
+  $ ewb plugins remove
 ```
 
-## `owb plugins update`
+## `ewb plugins update`
 
 Update installed plugins.
 
 ```
 USAGE
-  $ owb plugins update [-h] [-v]
+  $ ewb plugins update [-h] [-v]
 
 FLAGS
   -h, --help     Show CLI help.
@@ -463,112 +481,63 @@ DESCRIPTION
   Update installed plugins.
 ```
 
-## `owb search [FILE]`
+## `ewb search kind [KIND]`
 
-describe the command here
-
-```
-USAGE
-  $ owb search [FILE] [-n <value>] [-f]
-
-ARGUMENTS
-  FILE  file to read
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ owb search
-```
-
-_See code: [dist/commands/search.ts](https://github.com/samwardbiddle/osdu-workbench/blob/v0.0.0/dist/commands/search.ts)_
-
-## `owb setup api [FILE]`
-
-describe the command here
+Perform a search call using the kind key and flags for query and limit
 
 ```
 USAGE
-  $ owb setup api [FILE] [-n <value>] [-f]
+  $ ewb search kind [KIND] [-q <value>] [--limit <value>] [--table <value>]
 
 ARGUMENTS
-  FILE  file to read
+  KIND  kind to query
 
 FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
+  -q, --query=<value>  Specific query to run
+  --limit=<value>      How many lines to return
+  --table=<value>      What format to display search results
 
 DESCRIPTION
-  describe the command here
+  Perform a search call using the kind key and flags for query and limit
 
 EXAMPLES
-  $ owb setup api 'configure'
+  $ ewb search kind osdu:wks:master-data--Well:1.0.0
 ```
 
-## `owb setup creds [ENCRYPT]`
-
-Configures credentials and saves them to local file.
-
-```
-USAGE
-  $ owb setup creds [ENCRYPT] [-p <value>] [-k <value>] [-s <value>]
-
-ARGUMENTS
-  ENCRYPT  Encrypt secret
-
-FLAGS
-  -k, --format=<value>   API Key
-  -p, --source=<value>   [default: default] OSDU User Profile to Use
-  -s, --display=<value>  API Secret
-
-DESCRIPTION
-  Configures credentials and saves them to local file.
-
-EXAMPLES
-  $ owb setup creds --profile 'example' --ApiKey 'yourKey' --ApiSecret 'abc123'
-```
-
-## `owb setup templates [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ owb setup templates [FILE] [-n <value>] [-f]
-
-ARGUMENTS
-  FILE  file to read
-
-FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
-
-DESCRIPTION
-  describe the command here
-
-EXAMPLES
-  $ owb setup templates
-```
-
-## `owb start`
+## `ewb start`
 
 Basic start command implements a command prompt input workflow.
 
 ```
 USAGE
-  $ owb start
+  $ ewb start
 
 DESCRIPTION
   Basic start command implements a command prompt input workflow.
 
 EXAMPLES
-  $ owb start
+  $ ewb start
 ```
 
-_See code: [dist/commands/start.ts](https://github.com/samwardbiddle/osdu-workbench/blob/v0.0.0/dist/commands/start.ts)_
+_See code: [dist/commands/start.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/start.ts)_
 
+## `ewb user add [USERNAME] [USERPASSWORD] [POOLID]`
+
+Adds a user to a cognito user pool
+
+```
+USAGE
+  $ ewb user add [USERNAME] [USERPASSWORD] [POOLID]
+
+ARGUMENTS
+  USERNAME      User to add
+  USERPASSWORD  Password to add
+  POOLID        Cognito Pool ID
+
+DESCRIPTION
+  Adds a user to a cognito user pool
+
+EXAMPLES
+  $ ewb user add
+```
 <!-- commandsstop -->
