@@ -1,20 +1,16 @@
-# Energy Workbench CLI
+# Energy Workbench CLI (EWB)
 
-This command line interface automates development and operational tasks for OSDU open source software. The workbench combines pre-built software modules, data operations via SDK, and common operational commands into a single command line interface. OSDU Workbench (owb) reduces common operations that take days or weeks to hours or minutes.
+This command line interface automates development and operational tasks for [Energy Data Insights on AWS - OSDU Data Platform](https://aws.amazon.com/energy/osdu-data-platform/). The workbench combines pre-built software modules, data operations via SDK, and common operational actions into a single command line interface.
 
 <!-- toc -->
-* [Energy Workbench CLI](#energy-workbench-cli)
+
+- [Energy Workbench CLI (EWB)](#energy-workbench-cli-ewb)
 <!-- tocstop -->
 
 ## Usage
 
-### For development
-
-```sh-session
-./bin/dev <your-command>
-```
-
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @aws/energy-workbench-cli
 $ ewb COMMAND
@@ -26,33 +22,35 @@ USAGE
   $ ewb COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-* [`ewb config [ENCRYPT]`](#ewb-config-encrypt)
-* [`ewb create module [TEMPLATE]`](#ewb-create-module-template)
-* [`ewb create project [TEMPLATE]`](#ewb-create-project-template)
-* [`ewb export`](#ewb-export)
-* [`ewb group add [GROUPTOADD]`](#ewb-group-add-grouptoadd)
-* [`ewb group list`](#ewb-group-list)
-* [`ewb help [COMMANDS]`](#ewb-help-commands)
-* [`ewb member add GROUPNAME MEMBERNAME ROLE`](#ewb-member-add-groupname-membername-role)
-* [`ewb member groups MEMBERTOLIST`](#ewb-member-groups-membertolist)
-* [`ewb member list GROUPTOLIST`](#ewb-member-list-grouptolist)
-* [`ewb plugins`](#ewb-plugins)
-* [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin)
-* [`ewb plugins:inspect PLUGIN...`](#ewb-pluginsinspect-plugin)
-* [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin-1)
-* [`ewb plugins:link PLUGIN`](#ewb-pluginslink-plugin)
-* [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin)
-* [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-1)
-* [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-2)
-* [`ewb plugins update`](#ewb-plugins-update)
-* [`ewb search kind [KIND]`](#ewb-search-kind-kind)
-* [`ewb start`](#ewb-start)
-* [`ewb user add [USERNAME] [USERPASSWORD] [POOLID]`](#ewb-user-add-username-userpassword-poolid)
+
+- [`ewb config [ENCRYPT]`](#ewb-config-encrypt)
+- [`ewb create module [TEMPLATE]`](#ewb-create-module-template)
+- [`ewb create project [TEMPLATE]`](#ewb-create-project-template)
+- [`ewb export`](#ewb-export)
+- [`ewb group add [GROUPTOADD]`](#ewb-group-add-grouptoadd)
+- [`ewb group list`](#ewb-group-list)
+- [`ewb help [COMMANDS]`](#ewb-help-commands)
+- [`ewb member add GROUPNAME MEMBERNAME ROLE`](#ewb-member-add-groupname-membername-role)
+- [`ewb member groups MEMBERTOLIST`](#ewb-member-groups-membertolist)
+- [`ewb member list GROUPTOLIST`](#ewb-member-list-grouptolist)
+- [`ewb plugins`](#ewb-plugins)
+- [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin)
+- [`ewb plugins:inspect PLUGIN...`](#ewb-pluginsinspect-plugin)
+- [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin-1)
+- [`ewb plugins:link PLUGIN`](#ewb-pluginslink-plugin)
+- [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin)
+- [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-1)
+- [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-2)
+- [`ewb plugins update`](#ewb-plugins-update)
+- [`ewb search kind [KIND]`](#ewb-search-kind-kind)
+- [`ewb start`](#ewb-start)
+- [`ewb user add [USERNAME] [USERPASSWORD] [POOLID]`](#ewb-user-add-username-userpassword-poolid)
 
 ## `ewb config [ENCRYPT]`
 
@@ -299,7 +297,7 @@ ALIASES
   $ ewb plugins add
 
 EXAMPLES
-  $ ewb plugins:install myplugin 
+  $ ewb plugins:install myplugin
 
   $ ewb plugins:install https://github.com/someuser/someplugin
 
@@ -362,7 +360,7 @@ ALIASES
   $ ewb plugins add
 
 EXAMPLES
-  $ ewb plugins:install myplugin 
+  $ ewb plugins:install myplugin
 
   $ ewb plugins:install https://github.com/someuser/someplugin
 
@@ -540,4 +538,38 @@ DESCRIPTION
 EXAMPLES
   $ ewb user add
 ```
+
 <!-- commandsstop -->
+
+## Development
+
+This tool uses the Open CLI Framework (OCLIF). To add additional commands or operations please reference [OCLIF documentation](https://oclif.io/docs/generator_commands). Below are some basic commands to get started.
+
+To add to the CLI:
+
+```sh-session
+# to generate a new command
+oclif generate command NAME
+
+# to generate a new hook
+oclif generate hook NAME
+```
+
+To run existing commands in development mode:
+
+```sh-session
+./bin/dev <your-command>
+```
+
+To build the existing CLI:
+
+```sh-session
+npm run build
+```
+
+To dynamically update the README:
+
+```sh-session
+npm run build
+oclif readme
+```
