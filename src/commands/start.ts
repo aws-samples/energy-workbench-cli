@@ -10,7 +10,7 @@ async function welcome() {
   console.clear();
   console.log(
     chalk.hex("#FFA500")(
-      figlet.textSync("EDI Energy Workbench", {
+      figlet.textSync("EDI - Energy Workbench", {
         font: "Banner3",
         horizontalLayout: "full",
         whitespaceBreak: true,

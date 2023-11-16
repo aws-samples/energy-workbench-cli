@@ -4,7 +4,10 @@ This command line interface automates development and operational tasks for [Ene
 
 <!-- toc -->
 
-- [Energy Workbench CLI (EWB)](#energy-workbench-cli-ewb)
+- [Usage](#usage)
+- [Commands](#commands)
+- [Development](#development)
+
 <!-- tocstop -->
 
 ## Usage
