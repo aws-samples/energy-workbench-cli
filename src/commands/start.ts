@@ -1,20 +1,16 @@
-import { Args, Command, Flags } from "@oclif/core";
+import { Command } from "@oclif/core";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import figlet from "figlet";
-import { createSpinner } from "nanospinner";
-import fs from "fs";
 import os from "os";
+import { execFile } from "child_process";
 import { configure } from "../utils/setup/configure";
-import { exportEnv } from "../utils/setup/exports";
-
-const orange = chalk.hex("#FFA500");
 
 async function welcome() {
   console.clear();
   console.log(
     chalk.hex("#FFA500")(
-      figlet.textSync("EDI Workbench", {
+      figlet.textSync("EDI - Energy Workbench", {
         font: "Banner3",
         horizontalLayout: "full",
         whitespaceBreak: true,
@@ -29,15 +25,6 @@ async function welcome() {
   console.log("\n");
 }
 
-function parseProfiles(credentialsPath: string): string[] {
-  const fileContent = fs.readFileSync(credentialsPath, "utf-8");
-  const lines = fileContent.split("\n");
-  const profiles = lines
-    .filter((line) => line.startsWith("["))
-    .map((profile) => profile.replace(/[\[\]]/g, ""));
-  return profiles;
-}
-
 export default class Start extends Command {
   static description =
     "Basic start command implements a command prompt input workflow.";
@@ -46,11 +33,7 @@ export default class Start extends Command {
 
   public async run(): Promise<void> {
     welcome();
-    const choices = [
-      "🔐  configure credentials",
-      "📩  export your credentials",
-      "👋  get help",
-    ];
+    const choices = ["🔐  configure credentials", "👋  get help"];
     const prompt: any = await inquirer.prompt([
       {
         type: "list",
@@ -60,31 +43,19 @@ export default class Start extends Command {
       },
     ]);
 
-    const credentialsDir = `${os.homedir()}/.osdu`;
-    const credentialsPath = `${credentialsDir}/credentials`;
-
     const answer = prompt.start;
 
     if (answer === "🔐  configure credentials") {
       console.log("Configuring credentials 🪄");
-      configure(credentialsDir);
-    }
-    if (answer === "📩  export your credentials") {
-      console.log("Exporting default credentials");
-      const profiles = parseProfiles(credentialsPath);
-      const profilePrompt: any = await inquirer.prompt([
-        {
-          type: "list",
-          message: "Which profile would you like to export?",
-          name: "profile",
-          choices: profiles,
-        },
-      ]);
-      console.log(profilePrompt);
-      exportEnv(profilePrompt.profile, credentialsPath, "OSDU");
+      configure(`${os.homedir()}/.osdu/`);
     }
     if (answer === "👋  get help") {
-      console.log("This feature is coming soon!");
+      execFile("ewb", ["--help"], (error, stdout, stderr) => {
+        if (error) {
+          throw error;
+        }
+        console.log(stdout);
+      });
     }
   }
 }
