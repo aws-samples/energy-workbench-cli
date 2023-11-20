@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as os from "os";
 import inquirer from "inquirer";
 import { Command, ux } from "@oclif/core";
-import { config } from "dotenv";
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

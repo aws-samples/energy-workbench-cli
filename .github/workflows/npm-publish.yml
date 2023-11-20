@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 21
-          registry-url: "https://registry.npmjs.or/"
+          registry-url: "https://registry.npmjs.org/"
 
       - name: Install dependencies
         run: yarn
@@ -24,6 +24,6 @@ jobs:
         run: yarn build
 
       - name: Publish to NPM
-        run: npm publish
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
