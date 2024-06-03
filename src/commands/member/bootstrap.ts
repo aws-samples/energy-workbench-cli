@@ -18,15 +18,14 @@ export default class MemberBootstrap extends Command {
 
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(MemberBootstrap);
-
     const filePath = 'energy-workbench-cli/src/utils/group/groups.json';
+    const config = validateEnv();
 
     try {
       const m = args.memberName || "";
       const r = "OWNER";
       const fileContent = await fs.readFile(filePath, 'utf8');
       const data = JSON.parse(fileContent);
-      const config = validateEnv();
       const memberAdd = new MEMBER.MemberAdd(config.endpoint, config.region);
 
       for (const category in data) {
@@ -40,3 +39,4 @@ export default class MemberBootstrap extends Command {
     }
   }
 }
+44

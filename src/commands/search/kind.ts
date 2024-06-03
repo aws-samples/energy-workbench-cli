@@ -5,7 +5,7 @@ import { validateEnv } from "../../utils/config/config";
 
 export default class SearchKind extends Command {
   static description =
-    "Perform a search call using the kind key and flags for query and limit";
+    "Perform a search call using the kind key and flags for query and limit.";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> osdu:wks:master-data--Well:1.0.0",
@@ -23,6 +23,7 @@ export default class SearchKind extends Command {
     }),
   };
 
+  
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(SearchKind);
     const specificQuery = flags.query || "";
