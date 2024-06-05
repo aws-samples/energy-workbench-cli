@@ -17,10 +17,12 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
+    "@aws/energy-workbench-cli": "^0.0.1",
     "@aws/energy-workbench-sdk": "^0.0.1",
     "@oclif/core": "^2",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.4.7",
+    "@oclif/plugin-warn-if-update-available": "^3.1.3",
     "@types/chalk": "^2.2.0",
     "@types/chalk-animation": "^1.6.1",
     "@types/figlet": "^1.5.6",
@@ -31,6 +33,7 @@
     "chalk": "^4.1.2",
     "chalk-animation": "^2.0.3",
     "cli-table": "^0.3.11",
+    "debug": "^4.3.4",
     "dotenv": "^16.3.1",
     "execa": "^8.0.1",
     "figlet": "^1.6.0",
@@ -38,6 +41,7 @@
     "graceful-fs": "^4.2.11",
     "gradient": "^0.2.0",
     "inquirer": "6.3.1",
+    "lodash.template": "^4.5.0",
     "nanospinner": "^1.1.0",
     "ncp": "^2.0.0",
     "pkg-install": "^1.0.0",

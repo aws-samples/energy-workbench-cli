@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
+    "composite": true,
     "noEmit": true
   },
   "references": [
-    {"path": ".."}
+    {"path": "../"}
   ]
 }
