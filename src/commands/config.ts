@@ -1,5 +1,5 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { configure } from "../utils/setup/configure";
+import { configure } from "../utils/setup/configure.js";
 import * as os from "os";
 
 export default class Config extends Command {

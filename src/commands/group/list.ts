@@ -1,7 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { GROUP } from "@aws/energy-workbench-sdk";
-import { displayGroupResults } from "../../utils/group/groupListTable";
-import { validateEnv } from "../../utils/config/config";
+import { displayGroupResults } from "../../utils/group/groupListTable.js";
+import { validateEnv } from "../../utils/config/config.js";
 
 export default class GroupSearch extends Command {
   static description = "List all groups for a specific instance.";

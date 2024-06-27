@@ -1,6 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { MEMBER } from "@aws/energy-workbench-sdk";
-import { validateEnv } from "../../utils/config/config";
+import { validateEnv } from "../../utils/config/config.js";
 import * as fs from 'fs/promises';
 
 export default class MemberBootstrap extends Command {
@@ -17,21 +17,20 @@ export default class MemberBootstrap extends Command {
   };
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse(MemberBootstrap);
-    const filePath = 'energy-workbench-cli/src/utils/group/groups.json';
-    const config = validateEnv();
+    const { args: { memberName = "" }, flags } = await this.parse(MemberBootstrap);
+    const filePath = './src/utils/group/groups.json';
+    const { endpoint, region } = validateEnv();
 
     try {
-      const m = args.memberName || "";
-      const r = "OWNER";
+      const memberRole = "OWNER";
       const fileContent = await fs.readFile(filePath, 'utf8');
       const data = JSON.parse(fileContent);
-      const memberAdd = new MEMBER.MemberAdd(config.endpoint, config.region);
+      const memberAdd = new MEMBER.MemberAdd(endpoint, region);
 
       for (const category in data) {
         for (const item of data[category]) {
-          const response = await memberAdd.add(item, m, r);
-          console.log(`Response for ${item}:`, response);
+          const response = await memberAdd.add(item, memberName, memberRole);
+          console.log(`Response for ${item}: ${response}`);
         }
       }
     } catch (error) {
@@ -39,4 +38,3 @@ export default class MemberBootstrap extends Command {
     }
   }
 }
-44

@@ -1,7 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { configure } from "../utils/setup/configure";
+import { configure } from "../utils/setup/configure.js";
 import * as os from "os";
-import { exportEnv } from "../utils/setup/exports";
+import { exportEnv } from "../utils/setup/exports.js";
 
 export default class Export extends Command {
   static description = "Export credentials to local command line session.";

@@ -1,7 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { Search } from "@aws/energy-workbench-sdk";
-import { displaySearchResults } from "../../utils/search/searchQueryTable";
-import { validateEnv } from "../../utils/config/config";
+import { displaySearchResults } from "../../utils/search/searchQueryTable.js";
+import { validateEnv } from "../../utils/config/config.js";
 
 export default class SearchKind extends Command {
   static description =

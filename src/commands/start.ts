@@ -4,7 +4,7 @@ import inquirer from "inquirer";
 import figlet from "figlet";
 import os from "os";
 import { execFile } from "child_process";
-import { configure } from "../utils/setup/configure";
+import { configure } from "../utils/setup/configure.js";
 
 async function welcome() {
   console.clear();

@@ -1,7 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { MEMBER } from "@aws/energy-workbench-sdk";
-import { displayMemberResults } from "../../utils/member/memberListTable";
-import { validateEnv } from "../../utils/config/config";
+import { displayMemberResults } from "../../utils/member/memberListTable.js";
+import { validateEnv } from "../../utils/config/config.js";
 
 export default class MemberList extends Command {
   static description = "List all members for a specific group.";

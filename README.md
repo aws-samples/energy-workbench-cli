@@ -3,57 +3,41 @@
 This command line interface automates development and operational tasks for [Energy Data Insights on AWS - OSDU Data Platform](https://aws.amazon.com/energy/osdu-data-platform/). The workbench combines pre-built software modules, data operations via SDK, and common operational actions into a single command line interface.
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
-- [Development](#development)
-
+* [Energy Workbench CLI (EWB)](#energy-workbench-cli-ewb)
+* [to generate a new command](#to-generate-a-new-command)
+* [to generate a new hook](#to-generate-a-new-hook)
 <!-- tocstop -->
 
 ## Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g @aws/energy-workbench-cli
 $ ewb COMMAND
 running command...
 $ ewb (--version)
-@aws/energy-workbench-cli/0.0.1 darwin-arm64 node-v19.9.0
+@aws/energy-workbench-cli/0.0.1 darwin-arm64 node-v21.7.2
 $ ewb --help [COMMAND]
 USAGE
   $ ewb COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-
-- [`ewb config [ENCRYPT]`](#ewb-config-encrypt)
-- [`ewb create module [TEMPLATE]`](#ewb-create-module-template)
-- [`ewb create project [TEMPLATE]`](#ewb-create-project-template)
-- [`ewb export`](#ewb-export)
-- [`ewb group add [GROUPTOADD]`](#ewb-group-add-grouptoadd)
-- [`ewb group list`](#ewb-group-list)
-- [`ewb help [COMMANDS]`](#ewb-help-commands)
-- [`ewb member add GROUPNAME MEMBERNAME ROLE`](#ewb-member-add-groupname-membername-role)
-- [`ewb member groups MEMBERTOLIST`](#ewb-member-groups-membertolist)
-- [`ewb member list GROUPTOLIST`](#ewb-member-list-grouptolist)
-- [`ewb plugins`](#ewb-plugins)
-- [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin)
-- [`ewb plugins:inspect PLUGIN...`](#ewb-pluginsinspect-plugin)
-- [`ewb plugins:install PLUGIN...`](#ewb-pluginsinstall-plugin-1)
-- [`ewb plugins:link PLUGIN`](#ewb-pluginslink-plugin)
-- [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin)
-- [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-1)
-- [`ewb plugins:uninstall PLUGIN...`](#ewb-pluginsuninstall-plugin-2)
-- [`ewb plugins update`](#ewb-plugins-update)
-- [`ewb search kind [KIND]`](#ewb-search-kind-kind)
-- [`ewb start`](#ewb-start)
-- [`ewb user add [USERNAME] [USERPASSWORD] [POOLID]`](#ewb-user-add-username-userpassword-poolid)
+* [`ewb config [ENCRYPT]`](#ewb-config-encrypt)
+* [`ewb export`](#ewb-export)
+* [`ewb group add [GROUPTOADD]`](#ewb-group-add-grouptoadd)
+* [`ewb group list`](#ewb-group-list)
+* [`ewb member add GROUPNAME MEMBERNAME ROLE`](#ewb-member-add-groupname-membername-role)
+* [`ewb member bootstrap MEMBERNAME`](#ewb-member-bootstrap-membername)
+* [`ewb member groups MEMBERTOLIST`](#ewb-member-groups-membertolist)
+* [`ewb member list GROUPTOLIST`](#ewb-member-list-grouptolist)
+* [`ewb search kind [KIND]`](#ewb-search-kind-kind)
+* [`ewb start`](#ewb-start)
+* [`ewb user add [USERNAME] [USERPASSWORD] [POOLID]`](#ewb-user-add-username-userpassword-poolid)
 
 ## `ewb config [ENCRYPT]`
 
@@ -78,47 +62,7 @@ EXAMPLES
   $ ewb config --profile 'example' --ApiKey 'yourKey' --ApiSecret 'abc123'
 ```
 
-_See code: [dist/commands/config.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/config.ts)_
-
-## `ewb create module [TEMPLATE]`
-
-Add a new module to an existing project
-
-```
-USAGE
-  $ ewb create module [TEMPLATE]
-
-ARGUMENTS
-  TEMPLATE  Template
-
-DESCRIPTION
-  Add a new module to an existing project
-
-EXAMPLES
-  $ ewb create module 'app' --template 'example' --git 'true' --cicd 'true'
-```
-
-## `ewb create project [TEMPLATE]`
-
-Start new application or project from a template
-
-```
-USAGE
-  $ ewb create project [TEMPLATE] [-g <value>] [-c <value>]
-
-ARGUMENTS
-  TEMPLATE  Template
-
-FLAGS
-  -c, --cicd=<value>  [default: github] Option to include cicd pipeline.
-  -g, --git=<value>   [default: true] Option for creating git repository
-
-DESCRIPTION
-  Start new application or project from a template
-
-EXAMPLES
-  $ ewb create project 'app' --template 'example' --git 'true' --cicd 'true'
-```
+_See code: [dist/commands/config.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/config.js)_
 
 ## `ewb export`
 
@@ -138,7 +82,7 @@ EXAMPLES
   $ ewb export --profile 'example'
 ```
 
-_See code: [dist/commands/export.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/export.ts)_
+_See code: [dist/commands/export.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/export.js)_
 
 ## `ewb group add [GROUPTOADD]`
 
@@ -158,6 +102,8 @@ EXAMPLES
   $ ewb group add
 ```
 
+_See code: [dist/commands/group/add.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/group/add.js)_
+
 ## `ewb group list`
 
 List all groups for a specific instance.
@@ -173,25 +119,7 @@ EXAMPLES
   $ ewb group list
 ```
 
-## `ewb help [COMMANDS]`
-
-Display help for ewb.
-
-```
-USAGE
-  $ ewb help [COMMANDS] [-n]
-
-ARGUMENTS
-  COMMANDS  Command to show help for.
-
-FLAGS
-  -n, --nested-commands  Include all nested commands in the output.
-
-DESCRIPTION
-  Display help for ewb.
-```
-
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.20/src/commands/help.ts)_
+_See code: [dist/commands/group/list.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/group/list.js)_
 
 ## `ewb member add GROUPNAME MEMBERNAME ROLE`
 
@@ -213,6 +141,28 @@ EXAMPLES
   $ ewb member add users.datalake.admins@osdu.example.com test@testing.com OWNER
 ```
 
+_See code: [dist/commands/member/add.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/member/add.js)_
+
+## `ewb member bootstrap MEMBERNAME`
+
+Add a member to all the default groups needed to perform basic tasks.
+
+```
+USAGE
+  $ ewb member bootstrap MEMBERNAME
+
+ARGUMENTS
+  MEMBERNAME  Member to add to the groups.
+
+DESCRIPTION
+  Add a member to all the default groups needed to perform basic tasks.
+
+EXAMPLES
+  $ ewb member bootstrap test@testing.com
+```
+
+_See code: [dist/commands/member/bootstrap.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/member/bootstrap.js)_
+
 ## `ewb member groups MEMBERTOLIST`
 
 List all groups for a specific member.
@@ -230,6 +180,8 @@ DESCRIPTION
 EXAMPLES
   $ ewb member groups user@testing.com
 ```
+
+_See code: [dist/commands/member/groups.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/member/groups.js)_
 
 ## `ewb member list GROUPTOLIST`
 
@@ -249,242 +201,11 @@ EXAMPLES
   $ ewb member list users.datalake.admins@osdu.example.com
 ```
 
-## `ewb plugins`
-
-List installed plugins.
-
-```
-USAGE
-  $ ewb plugins [--core]
-
-FLAGS
-  --core  Show core plugins.
-
-DESCRIPTION
-  List installed plugins.
-
-EXAMPLES
-  $ ewb plugins
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/index.ts)_
-
-## `ewb plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ ewb plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ ewb plugins add
-
-EXAMPLES
-  $ ewb plugins:install myplugin
-
-  $ ewb plugins:install https://github.com/someuser/someplugin
-
-  $ ewb plugins:install someuser/someplugin
-```
-
-## `ewb plugins:inspect PLUGIN...`
-
-Displays installation properties of a plugin.
-
-```
-USAGE
-  $ ewb plugins:inspect PLUGIN...
-
-ARGUMENTS
-  PLUGIN  [default: .] Plugin to inspect.
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Displays installation properties of a plugin.
-
-EXAMPLES
-  $ ewb plugins:inspect myplugin
-```
-
-## `ewb plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ ewb plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ ewb plugins add
-
-EXAMPLES
-  $ ewb plugins:install myplugin
-
-  $ ewb plugins:install https://github.com/someuser/someplugin
-
-  $ ewb plugins:install someuser/someplugin
-```
-
-## `ewb plugins:link PLUGIN`
-
-Links a plugin into the CLI for development.
-
-```
-USAGE
-  $ ewb plugins:link PLUGIN
-
-ARGUMENTS
-  PATH  [default: .] path to plugin
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Links a plugin into the CLI for development.
-  Installation of a linked plugin will override a user-installed or core plugin.
-
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
-  command will override the user-installed or core plugin implementation. This is useful for development work.
-
-
-EXAMPLES
-  $ ewb plugins:link myplugin
-```
-
-## `ewb plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ ewb plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ ewb plugins unlink
-  $ ewb plugins remove
-```
-
-## `ewb plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ ewb plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ ewb plugins unlink
-  $ ewb plugins remove
-```
-
-## `ewb plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ ewb plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ ewb plugins unlink
-  $ ewb plugins remove
-```
-
-## `ewb plugins update`
-
-Update installed plugins.
-
-```
-USAGE
-  $ ewb plugins update [-h] [-v]
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Update installed plugins.
-```
+_See code: [dist/commands/member/list.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/member/list.js)_
 
 ## `ewb search kind [KIND]`
 
-Perform a search call using the kind key and flags for query and limit
+Perform a search call using the kind key and flags for query and limit.
 
 ```
 USAGE
@@ -495,15 +216,17 @@ ARGUMENTS
 
 FLAGS
   -q, --query=<value>  Specific query to run
-  --limit=<value>      How many lines to return
-  --table=<value>      What format to display search results
+      --limit=<value>  How many lines to return
+      --table=<value>  What format to display search results
 
 DESCRIPTION
-  Perform a search call using the kind key and flags for query and limit
+  Perform a search call using the kind key and flags for query and limit.
 
 EXAMPLES
   $ ewb search kind osdu:wks:master-data--Well:1.0.0
 ```
+
+_See code: [dist/commands/search/kind.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/search/kind.js)_
 
 ## `ewb start`
 
@@ -520,7 +243,7 @@ EXAMPLES
   $ ewb start
 ```
 
-_See code: [dist/commands/start.ts](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/start.ts)_
+_See code: [dist/commands/start.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/start.js)_
 
 ## `ewb user add [USERNAME] [USERPASSWORD] [POOLID]`
 
@@ -542,6 +265,7 @@ EXAMPLES
   $ ewb user add
 ```
 
+_See code: [dist/commands/user/add.js](https://github.com/aws-samples/energy-workbench-cli/blob/v0.0.1/dist/commands/user/add.js)_
 <!-- commandsstop -->
 
 ## Development

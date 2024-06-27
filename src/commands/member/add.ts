@@ -1,6 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { MEMBER } from "@aws/energy-workbench-sdk";
-import { validateEnv } from "../../utils/config/config";
+import { validateEnv } from "../../utils/config/config.js";
 
 export default class MemberAdd extends Command {
   static description = "Add a member to a specific group with a defined role.";

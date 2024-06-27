@@ -1,6 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { GROUP } from "@aws/energy-workbench-sdk";
-import { validateEnv } from "../../utils/config/config";
+import { validateEnv } from "../../utils/config/config.js";
 
 export default class GroupAdd extends Command {
   static description = "Adds a group";
