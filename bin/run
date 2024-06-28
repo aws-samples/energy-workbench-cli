@@ -1,8 +1,0 @@
-#!/usr/bin/env node
-
-import oclif from '@oclif/core';
-import '@oclif/core/flush';
-import handleModule from '@oclif/core/handle';
-
-const handleError = handleModule;
-oclif.run().catch(handleError);

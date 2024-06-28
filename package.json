@@ -5,7 +5,7 @@
   "description": "Workbench CLI + SDK + module library to serve as companion toolkit for OSDU on AWS.",
   "author": "AWS for Energy",
   "bin": {
-    "ewb": "./bin/run"
+    "ewb": "./bin/run.js"
   },
   "homepage": "https://github.com/aws-samples/energy-workbench-cli",
   "license": "MIT",
@@ -19,36 +19,41 @@
   ],
   "dependencies": {
     "@aws/energy-workbench-sdk": "^0.0.1",
+    "@oclif/core": "^4.0.7",
+    "@oclif/plugin-help": "^6.0.0",
+    "@oclif/plugin-plugins": "^5.3.2",
+    "@oclif/plugin-warn-if-update-available": "^3.1.6",
     "@types/chalk": "^2.2.0",
     "@types/figlet": "^1.5.8",
     "@types/inquirer": "^9.0.7",
     "chalk": "^5.3.0",
     "cli-table": "^0.3.11",
     "figlet": "^1.7.0",
-    "inquirer": "^9.2.23"
+    "inquirer": "^9.3.1",
+    "rimraf": "^5.0.7"
   },
   "devDependencies": {
-    "@oclif/core": "^4.0.7",
     "@oclif/test": "^4.0.4",
     "@types/cli-table": "^0.3.4",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.14.2",
-    "@typescript-eslint/eslint-plugin": "^5.27.1",
-    "@typescript-eslint/parser": "^5.27.1",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
     "eslint": "^8.57.0",
-    "mocha": "^10.5.1",
+    "mocha": "^10.5.2",
     "shx": "^0.3.4",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^4.0.0"
   },
   "oclif": {
-    "bin": "ewb",
-    "dirname": "ewb",
+    "binAliases": "ewb",
     "commands": "./dist/commands",
+    "dirname": "ewb",
+    "topicSeparator": " ",
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins"
     ],
-    "topicSeparator": " ",
     "topics": {
       "hello": {
         "description": "Say hello to the world and others"
