@@ -1,4 +1,3 @@
-// config.ts
 
 interface Env {
   OSDU_ENDPOINT: string;
@@ -14,8 +13,13 @@ export function validateEnv() {
     throw new Error("OSDU_REGION env var is required");
   }
 
+  if (!process.env.AWS_PROFILE) {
+    throw new Error("AWS_PROFILE env var is required");
+  }
+
   return {
     endpoint: process.env.OSDU_ENDPOINT,
     region: process.env.OSDU_REGION,
+    aws_profile: process.env.AWS_PROFILE
   };
 }

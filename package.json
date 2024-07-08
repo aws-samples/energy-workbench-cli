@@ -18,6 +18,9 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.606.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.606.0",
+    "@aws-sdk/credential-providers": "^3.606.0",
     "@aws/energy-workbench-sdk": "^0.0.1",
     "@oclif/core": "^4.0.7",
     "@oclif/plugin-help": "^6.0.0",
