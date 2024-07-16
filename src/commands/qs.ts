@@ -55,7 +55,7 @@ export default class QSearch extends Command {
 
       let completion = '';
 
-      for await (let chunkEvent of response.completion) {
+      for await (const chunkEvent of response.completion) {
         const chunk = chunkEvent.chunk;
         const decodedResponse = new TextDecoder("utf-8").decode(chunk.bytes);
         completion += decodedResponse;
