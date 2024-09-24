@@ -10,7 +10,9 @@
   "homepage": "https://github.com/aws-samples/energy-workbench-cli",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "aws-samples/energy-workbench-cli",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/aws-samples/energy-workbench-cli",
   "files": [
     "/bin",
     "/dist",
@@ -18,9 +20,11 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
-    "@aws-sdk/client-bedrock-agent-runtime": "^3.606.0",
-    "@aws-sdk/client-bedrock-runtime": "^3.606.0",
-    "@aws-sdk/credential-providers": "^3.606.0",
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.658.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.658.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.658.0",
+    "@aws-sdk/core": "^3.658.0",
+    "@aws-sdk/credential-providers": "^3.658.0",
     "@aws/energy-workbench-sdk": "^0.0.1",
     "@oclif/core": "^4.0.7",
     "@oclif/plugin-help": "^6.0.0",
@@ -46,16 +50,17 @@
     "mocha": "^10.5.2",
     "shx": "^0.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^4.0.0"
+    "typescript": "^5.2.2"
   },
   "oclif": {
-    "binAliases": "ewb",
+    "bin": "ewb",
     "commands": "./dist/commands",
     "dirname": "ewb",
     "topicSeparator": " ",
     "plugins": [
       "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-plugins",
+      "@oclif/plugin-warn-if-update-available"
     ],
     "topics": {
       "hello": {
@@ -72,12 +77,18 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/samwardbiddle/osdu-workbench/issues",
+  "bugs": "https://github.com/aws-samples/energy-workbench-cli/issues",
   "keywords": [
     "oclif"
-  ],
-  "types": "dist/index.d.ts"
+  ]
 }

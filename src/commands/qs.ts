@@ -36,7 +36,7 @@ export default class QSearch extends Command {
 
     const credentials = fromIni({
       profile: profileName,
-      filepath: join(process.env.HOME, ".aws/credentials"),
+      filepath: join(process.env.HOME || '', ".aws/credentials"),
     });
 
     const client = new BedrockAgentRuntimeClient({ region: config.region, credentials });
@@ -62,10 +62,12 @@ export default class QSearch extends Command {
       let completion = '';
 
       for await (const chunkEvent of response.completion) {
-        const chunk = chunkEvent.chunk;
-        const decodedResponse = new TextDecoder("utf-8").decode(chunk.bytes);
-        completion += decodedResponse;
-        console.log(completion);
+        if (chunkEvent.chunk) {
+          const chunk = chunkEvent.chunk;
+          const decodedResponse = new TextDecoder("utf-8").decode(chunk.bytes);
+          completion += decodedResponse;
+          console.log(completion);
+        }
       }
 
     } catch (err) {
