@@ -379,7 +379,7 @@
     "@smithy/util-utf8" "^3.0.0"
     tslib "^2.6.2"
 
-"@aws-sdk/core@3.658.0":
+"@aws-sdk/core@^3.658.0", "@aws-sdk/core@3.658.0":
   version "3.658.0"
   resolved "https://registry.npmjs.org/@aws-sdk/core/-/core-3.658.0.tgz"
   integrity sha512-vtOUqYD2/SfWGxmfYneiqv4R64qtSRPqznHUcMCusq71ZG9iz90ZxRYxS8ABrvhWD+oUqnxHesO08VYtaL4oAg==
