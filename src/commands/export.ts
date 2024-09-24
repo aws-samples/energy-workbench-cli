@@ -21,16 +21,22 @@ export default class Export extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(Export);
 
-    exportEnv(
-      flags.profile || "default",
-      `${os.homedir()}/.osdu/configuration`,
-      "OSDU"
-    );
+    try {
+      await exportEnv(
+        flags.profile || "default",
+        `${os.homedir()}/.osdu/configuration`,
+        "OSDU"
+      );
 
-    exportEnv(
-      flags.profile || "default",
-      `${os.homedir()}/.osdu/credentials`,
-      "OSDU"
-    );
+      await exportEnv(
+        flags.profile || "default",
+        `${os.homedir()}/.osdu/credentials`,
+        "OSDU"
+      );
+
+      this.log('Credentials exported successfully.');
+    } catch (error) {
+      this.error('Failed to export credentials.');
+    }
   }
 }

@@ -10,7 +10,9 @@
   "homepage": "https://github.com/aws-samples/energy-workbench-cli",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "aws-samples/energy-workbench-cli",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/aws-samples/energy-workbench-cli",
   "files": [
     "/bin",
     "/dist",
@@ -46,16 +48,17 @@
     "mocha": "^10.5.2",
     "shx": "^0.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^4.0.0"
+    "typescript": "^5.2.2"
   },
   "oclif": {
-    "binAliases": "ewb",
+    "bin": "ewb",
     "commands": "./dist/commands",
     "dirname": "ewb",
     "topicSeparator": " ",
     "plugins": [
       "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-plugins",
+      "@oclif/plugin-warn-if-update-available"
     ],
     "topics": {
       "hello": {
@@ -63,7 +66,7 @@
       }
     }
   },
-  "scripts": {
+ "scripts": {
     "build": "shx rm -rf dist && tsc -p tsconfig.json",
     "lint": "eslint . --ext .ts --config .eslintrc",
     "postpack": "shx rm -f oclif.manifest.json",
@@ -72,12 +75,18 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/samwardbiddle/osdu-workbench/issues",
+  "bugs": "https://github.com/aws-samples/energy-workbench-cli/issues",
   "keywords": [
     "oclif"
-  ],
-  "types": "dist/index.d.ts"
+  ]
 }

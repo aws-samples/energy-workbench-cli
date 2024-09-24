@@ -41,6 +41,11 @@ export default class Config extends Command {
 
     this.log(`Saving API Key to ${os.homedir()}/.osdu/credentials`);
 
-    configure(`${os.homedir()}/.osdu/`);
+    try {
+      await configure(`${os.homedir()}/.osdu/`);
+      this.log('Configuration completed successfully.');
+    } catch (error) {
+      this.error('Failed to configure.');
+    }
   }
 }
