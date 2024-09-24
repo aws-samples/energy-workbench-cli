@@ -32,7 +32,7 @@ function parseProfiles(credentialsPath: string): string[] {
   const lines = fileContent.split("\n");
   const profiles = lines
     .filter((line) => line.startsWith("["))
-    .map((profile) => profile.replace(/[\[\]]/g, ""));
+    .map((profile) => profile.replace(/[[\]]/g, ""));
   return profiles;
 }
 
