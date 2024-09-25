@@ -1,3 +1,6 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+This deliverable is considered Developed Content as defined in the AWS Service Terms and the SOW between the parties.
+
 # Energy Workbench CLI (EWB)
 
 This command line interface automates development and operational tasks for [Energy Data Insights on AWS - OSDU Data Platform](https://aws.amazon.com/energy/osdu-data-platform/). The workbench combines pre-built software modules, data operations via SDK, and common operational actions into a single command line interface.
