@@ -63,7 +63,7 @@ export async function configure(credentialsDir: string): Promise<string> {
   const hasProfileConfig = existingConfig.includes(`[${answers.profile}]`);
 
   // Save credentials to file
-  const credentials = `\n[${answers.profile}]\nOSDU_CLIENT_ID = ${answers.clientId}\nOSDU_COGNITO_USERNAME = ${answers.cognitoUsername}\nOSDU_COGNITO_PASSWORD = ${answers.cognitoPassword}\nOSDU_REGION = ${answers.osduRegion}\nOSDU_Endpoint = ${answers.osduEndpoint}\n`;
+  const credentials = `\n[${answers.profile}]\nOSDU_CLIENT_ID = ${answers.clientId}\nOSDU_USERNAME = ${answers.cognitoUsername}\nOSDU_PASSWORD = ${answers.cognitoPassword}\nOSDU_REGION = ${answers.osduRegion}\nOSDU_ENDPOINT = ${answers.osduEndpoint}\n`;
 
   const configuration = `\n[${answers.profile}]\nOSDU_REGION = ${answers.osduRegion}\nOSDU_ENDPOINT = ${answers.osduEndpoint}\n`;
 
