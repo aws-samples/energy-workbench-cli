@@ -23,6 +23,8 @@ export function exportEnv(
     if (exporting && line.startsWith(beginsWith)) {
       const [key, value] = line.split("=");
       exportVariable(key, value);
+      // print export command
+      console.log(`export ${key.replace(/\s+/g, '')}=${value.replace(/\s+/g, '')}`);
     }
   });
   return config;
