@@ -1,18 +1,71 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+This deliverable is considered Developed Content as defined in the AWS Service Terms and the SOW between the parties.
+
 # Energy Workbench CLI (EWB)
 
-This command line interface automates development and operational tasks for [Energy Data Insights on AWS - OSDU Data Platform](https://aws.amazon.com/energy/osdu-data-platform/). The workbench combines pre-built software modules, data operations via SDK, and common operational actions into a single command line interface.
+This command line interface supports the automation of operational tasks for EDI - [Energy Data Insights on AWS - OSDU Data Platform](https://aws.amazon.com/energy/osdu-data-platform/). This CLI - Command Line Interface - leverages oclif - The Open CLI Framework - an open source framework for building CLI in Node.js and Typescript. This EDI CLI allows to interact with EDI instances in an easy and intuitive way enabling you to perform common operational actions into a single command line interface.
 
 <!-- toc -->
 * [Energy Workbench CLI (EWB)](#energy-workbench-cli-ewb)
-* [to generate a new command](#to-generate-a-new-command)
-* [to generate a new hook](#to-generate-a-new-hook)
+* [Get started](#get-started)
+* [Configure environment variables](#configure-environment-variables)
+* [Export environment variables](#export-environment-variables)
+* [How to use](#usage)
 <!-- tocstop -->
+
+## Get started
+
+Follow these steps to get started:
+* download the EWB SDK from your given repository
+* download the EWB CLI from your given repository
+* unzip it to your home directory (in case it's zipped)
+* start a shell session and build both the SDK and the CLI (the following example works for linux and macOS)
+
+<!-- install -->
+```sh-session
+$ cd ~/
+$ cd edi-workbench/energy-workbench-sdk/
+$ npm install
+$ npm run build
+$ npm link
+$ cd ~/edi-workbench/energy-workbench-cli/
+$ npm link @aws/energy-workbench-sdk
+$ npm install
+$ npm run build
+$ npm link
+$ ewb --version
+```
+<!-- installstop -->
+
+After building both the SDK and the CLI, you should be able to test it and see something like @aws/energy-workbench-cli/0.0.1 for ewb --version.
+
+## Configure environment variables
+
+After extracting both the SDK and the CLI and building them, your next step to use should be to configure the environment variables needed to connect to the EDI instance.
+
+<!-- config -->
+```sh-session
+$ ewb start
+```
+<!-- configstop -->
+Select the option to configure credentials and follow the prompts to configure all the required environment variables. Additionally, you will have to configure the required variables for aws cli.
+
+## Export environment variables
+
+Depending on your specific operational system and the machine you are running the CLI, you might have to explicitly export the environment variables. This is true for macOS. The reason for that is that the CLI will export the variables in a sub-process, and when that sub-process ends the variables will also end. This is how to display and export the environment variables needed:
+
+
+<!-- export -->
+```sh-session
+$ ewb start
+```
+<!-- exportstop -->
+Select the option to export you credentials, select which profile you would like to export, copy and paste the export commands. 
 
 ## Usage
 
 <!-- usage -->
 ```sh-session
-$ npm install -g @aws/energy-workbench-cli
 $ ewb COMMAND
 running command...
 $ ewb (--version)
