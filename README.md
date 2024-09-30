@@ -23,12 +23,12 @@ Follow these steps to get started:
 
 <!-- install -->
 ```sh-session
-$ cd
-$ cd cd edi-workbench/energy-workbench-sdk/
+$ cd ~/
+$ cd edi-workbench/energy-workbench-sdk/
 $ npm install
 $ npm run build
 $ npm link
-$ cd cd ~/edi-workbench/energy-workbench-cli/
+$ cd ~/edi-workbench/energy-workbench-cli/
 $ npm link @aws/energy-workbench-sdk
 $ npm install
 $ npm run build
